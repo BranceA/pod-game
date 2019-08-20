@@ -36,3 +36,54 @@ function checkKeyWords() {
 
     }
 }
+
+
+//Player Inventory
+
+var inventory = [ {
+    item: 'torch',
+    action: 'add an action'
+}
+];
+
+//Compiled list of all in game items
+
+var allGameItems = [
+    {
+        item: 'key',
+        action: 'unlocks door'
+    }
+
+
+
+];
+
+
+// FUNCTION - player finds an item
+
+
+
+function copyItemFromArray(itemFound, array) {
+
+    if(allGameItems.item === itemFound) {
+        array.push(allGameItems.item);
+    }
+
+
+
+
+
+}
+
+
+copyItemFromArray(allGameItems.item, allGameItems);
+
+allGameItems.forEach(function() {
+    copyItemFromArray();
+});
+
+
+
+// This function would push a found item to an array of objects(inventory)
+
+

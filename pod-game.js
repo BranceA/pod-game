@@ -14,13 +14,13 @@ submitButton.addEventListener('click', checkKeyWords);
 function youGotAnItem(itemName, itemAction) {
     availableActions.pop();
     availableActions.push('<li>');
-    availableActions.push(itemName);
+    availableActions.push(itemAction);
     availableActions.push('</li>');
     availableActions.push('</ul>');
     commandsFooter.innerHTML = availableActions.join(" ");
     inventory.pop();
     inventory.push('<li>');
-    inventory.push(itemAction);
+    inventory.push(itemName);
     inventory.push('</li>');
     inventory.push('</ul>');
     inventoryAside.innerHTML = inventory.join(" ");
@@ -32,5 +32,7 @@ function checkKeyWords() {
     bigText.innerText = 'Ignore this.';
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1){
         youGotAnItem("Key", "Unlock");
+    } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key')) {
+
     }
 }

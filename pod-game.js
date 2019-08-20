@@ -29,8 +29,10 @@ function youGotAnItem(itemName, itemAction) {
 
 function checkKeyWords() {
     var checkThisText = submittedText.value;
-    if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && inventory.includes('Key')) {
-        bigText.innerHTML = 'Ignore this.';
+    if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key')) {
+        bigText.innerHTML = 'The key fits right in. You turn the key until you hear a click and the door slowly swings inward to reveal... playMusic(roundAbout) <h1>To Be Continued</h1>';
+    } else if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key') === false) {
+        bigText.innerHTML = 'How do you propose to do that?';
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === false) {
         bigText.innerHTML = 'What key?';
     } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('bookcase') !== -1) {
@@ -43,5 +45,21 @@ function checkKeyWords() {
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === true){
         youGotAnItem("Key", "Unlock");
         bigText.innerHTML = 'You pick up the key.';
+    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1){
+        bigText.innerHTML = 'BEHOLD!!! This <em>door</em> is the only thing preventing you from leaving. You jiggle the handle a few times just to make sure it is locked. Historical empirical evidence says that it will probably open if you have a <em>key</em> that fits in that keyhole.';
+    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('fish') !== -1){
+        bigText.innerHTML = 'This appears to be one of those fish that a wizard enchanted to sing but the magic seems to have worn off. You are not any sort of fish expert but you are pretty sure this is a red herring.';
+    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === false) {
+        bigText.innerHTML = 'What key?';
+    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === true) {
+        bigText.innerHTML = 'This key looks like it will probably fit in the <em>door</em>.';
+    } else if (checkThisText.toLowerCase().indexOf('look') !== -1){
+        bigText.innerHTML = 'You wake up with a sharp pain on the top of your head. Sitting up, you find yourself in an unfamiliar room. Your bed technically has a mattress and you don\'t look too closely at the sheet. To the north you see the only <em>door</em>, which is locked. There is a <em>bookcase</em>, full of decomposing books. A <em>fish</em> of some sort is hanging on the wall.';
+    } else if (checkThisText.toLowerCase().indexOf('get') !== -1){
+        bigText.innerHTML = 'You try your best but you just do not get it.';
+    } else if (checkThisText.toLowerCase().indexOf('use') !== -1){
+        bigText.innerHTML = 'Neither of us know how to use that.';
+    }  else {
+        bigText.innerHTML = 'Ok listen up. Down below you have a list of actions you can do. If you see a word like <em>this</em> then you can interact with it in some way. Type <em>look</em> to take a look at the room again.'
     }
 }

@@ -29,7 +29,7 @@ function youGotAnItem(itemName, itemAction) {
 
 function checkKeyWords() {
     var checkThisText = submittedText.value;
-    if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1) {
+    if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && inventory.includes('Key')) {
         bigText.innerHTML = 'Ignore this.';
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === false) {
         bigText.innerHTML = 'What key?';

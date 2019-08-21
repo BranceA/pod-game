@@ -24,7 +24,6 @@ main.big-text {
 
 aside.inventory {
     grid-area: 2 / 1 / 4 / 2;
-    padding-left: 5em;
     display: flex;
     flex-direction: column;
 }
@@ -35,6 +34,17 @@ aside ul {
     justify-content: space-around;
     height: 100%;
     width: 100%;
+}
+
+aside li {
+    border: .5em solid #418207;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    height: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 section.input-div {

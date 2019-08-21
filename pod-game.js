@@ -11,6 +11,12 @@ var didPlayerPullLever = false;
 commandsFooter.innerHTML = availableActions.join(" ");
 
 submitButton.addEventListener('click', checkKeyWords);
+submittedText.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        submitButton.click();
+    }
+});
 
 function youGotAnItem(itemName, itemAction) {
     availableActions.pop();
@@ -29,6 +35,7 @@ function youGotAnItem(itemName, itemAction) {
 
 function checkKeyWords() {
     var checkThisText = submittedText.value;
+    submittedText.value = '';
     if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key')) {
         bigText.innerHTML = 'The key fits right in. You turn the key until you hear a click and the door slowly swings inward to reveal... playMusic(roundAbout) <h1>To Be Continued</h1>';
     } else if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key') === false) {

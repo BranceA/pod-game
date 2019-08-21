@@ -37,6 +37,15 @@ section.input-div {
     width: 100%;
 }
 
+textarea {
+    background-color: black;
+    color: #418207;
+}
+
+button {
+    display: none;
+}
+
 footer.commands-box {
     grid-area: -2 / 1 / -1 / -1;
     display: flex;

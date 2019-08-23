@@ -19,18 +19,22 @@ submittedText.addEventListener("keyup", function(event) {
 });
 
 function youGotAnItem(itemName, itemAction) {
-    availableActions.pop();
-    availableActions.push('<li>');
-    availableActions.push(itemAction);
-    availableActions.push('</li>');
-    availableActions.push('</ul>');
-    commandsFooter.innerHTML = availableActions.join(" ");
-    inventory.pop();
-    inventory.push('<li>');
-    inventory.push(itemName);
-    inventory.push('</li>');
-    inventory.push('</ul>');
-    inventoryAside.innerHTML = inventory.join(" ");
+    if (inventory.includes(itemName) === true) {
+        bigText.innerHTML = 'You already have that.';
+    } else {
+        availableActions.pop();
+        availableActions.push('<li>');
+        availableActions.push(itemAction);
+        availableActions.push('</li>');
+        availableActions.push('</ul>');
+        commandsFooter.innerHTML = availableActions.join(" ");
+        inventory.pop();
+        inventory.push('<li>');
+        inventory.push(itemName);
+        inventory.push('</li>');
+        inventory.push('</ul>');
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
 }
 
 function checkKeyWords() {
@@ -50,8 +54,8 @@ function checkKeyWords() {
         bigText.innerHTML = 'There is a little resistance but you pull the lever. A small panel pops open in the back of the <em>bookcase</em>. Inside you see a <em>key</em>.';
         didPlayerPullLever = true;
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === true){
-        youGotAnItem("Key", "Unlock");
         bigText.innerHTML = 'You pick up the key.';
+        youGotAnItem("Key", "Unlock");
     } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1){
         bigText.innerHTML = 'BEHOLD!!! This <em>door</em> is the only thing preventing you from leaving. You jiggle the handle a few times just to make sure it is locked. Historical empirical evidence says that it will probably open if you have a <em>key</em> that fits in that keyhole.';
     } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('fish') !== -1){

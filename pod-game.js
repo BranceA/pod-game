@@ -6,7 +6,7 @@ var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
 var didPlayerPullLever = false;
-
+var txt;
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -63,10 +63,24 @@ function checkKeyWords() {
     } else if (checkThisText.toLowerCase().indexOf('look') !== -1){
         bigText.innerHTML = 'You wake up with a sharp pain on the top of your head. Sitting up, you find yourself in an unfamiliar room. Your bed technically has a mattress and you don\'t look too closely at the sheet. To the north you see the only <em>door</em>, which is locked. There is a <em>bookcase</em>, full of decomposing books. A <em>fish</em> of some sort is hanging on the wall.';
     } else if (checkThisText.toLowerCase().indexOf('get') !== -1){
-        bigText.innerHTML = 'You try your best but you just do not get it.';
+       txt = 'You try your best but you just do not get it.';
+       typeWriter(txt);
     } else if (checkThisText.toLowerCase().indexOf('use') !== -1){
         bigText.innerHTML = 'Neither of us know how to use that.';
     }  else {
         bigText.innerHTML = 'Ok listen up. Down below you have a list of actions you can do. If you see a word like <em>this</em> then you can interact with it in some way. Type <em>look</em> to take a look at the room again.'
+    }
+
+
+}
+var i = 0;
+// var txt = 'Lorem ipsum dummy text blabla.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, fugiat incidunt inventore maxime modi nobis ratione repellat saepe sunt voluptates. Aut consectetur consequatur consequuntur, distinctio dolorem eos fugiat, iure iusto nisi officiis omnis quaerat quam qui quibusdam rem sapiente sed sunt, voluptate? Adipisci ducimus error ipsa iure omnis quod, sit.';
+var speed = 50;
+
+function typeWriter(input) {
+    if (i < input.length) {
+        bigText.innerHTML += input.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
     }
 }

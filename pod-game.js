@@ -1,12 +1,13 @@
 var inventory = ['<ul>', '</ul>'];
-var availableActions = ['<ul>', '<li>Get</li>', '<li>Use</li>', '<li>Look</li>', '</ul>'];
+var availableActions = ['<ul>', '<li>Look</li>', '</ul>'];
 var bigText = document.getElementById('big-text-text');
 var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
 var didPlayerPullLever = false;
-
+var whatRoomWeIn = 'start';
+var firstCommand = false;
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -37,40 +38,41 @@ function youGotAnItem(itemName, itemAction) {
     }
 }
 
+function addNewCommand(newAction) {
+    availableActions.pop();
+    availableActions.push('<li>');
+    availableActions.push(newAction);
+    availableActions.push('</li>');
+    availableActions.push('</ul>');
+    commandsFooter.innerHTML = availableActions.join(" ");
+}
+
 function checkKeyWords() {
     var checkThisText = submittedText.value;
     submittedText.value = '';
-    if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key')) {
-        bigText.innerHTML = 'The key fits right in. You turn the key until you hear a click and the door slowly swings inward to reveal... playMusic(roundAbout) <h1>To Be Continued</h1>';
-    } else if (checkThisText.toLowerCase().indexOf('unlock') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && inventory.includes('Key') === false) {
-        bigText.innerHTML = 'How do you propose to do that?';
-    } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === false) {
-        bigText.innerHTML = 'What key?';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('bookcase') !== -1) {
-        bigText.innerHTML = 'This thing is kinda gross. The titles are all faded off the spines of the books and when you open one the pages crumble to dust. Wait is that a <em>lever</em>?';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('lever') !== -1) {
-        bigText.innerHTML = 'You take a gander at it. It is a wooden lever that probably does something if you <em>use</em> it.';
-    } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('lever') !== -1) {
-        bigText.innerHTML = 'There is a little resistance but you pull the lever. A small panel pops open in the back of the <em>bookcase</em>. Inside you see a <em>key</em>.';
-        didPlayerPullLever = true;
-    } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === true){
-        bigText.innerHTML = 'You pick up the key.';
-        youGotAnItem("Key", "Unlock");
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1){
-        bigText.innerHTML = 'BEHOLD!!! This <em>door</em> is the only thing preventing you from leaving. You jiggle the handle a few times just to make sure it is locked. Historical empirical evidence says that it will probably open if you have a <em>key</em> that fits in that keyhole.';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('fish') !== -1){
-        bigText.innerHTML = 'This appears to be one of those fish that a wizard enchanted to sing but the magic seems to have worn off. You are not any sort of fish expert but you are pretty sure this is a red herring.';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === false) {
-        bigText.innerHTML = 'What key?';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('key') !== -1 && didPlayerPullLever === true) {
-        bigText.innerHTML = 'This key looks like it will probably fit in the <em>door</em>.';
-    } else if (checkThisText.toLowerCase().indexOf('look') !== -1){
-        bigText.innerHTML = 'You wake up with a sharp pain on the top of your head. Sitting up, you find yourself in an unfamiliar room. Your bed technically has a mattress and you don\'t look too closely at the sheet. To the north you see the only <em>door</em>, which is locked. There is a <em>bookcase</em>, full of decomposing books. A <em>fish</em> of some sort is hanging on the wall.';
-    } else if (checkThisText.toLowerCase().indexOf('get') !== -1){
-        bigText.innerHTML = 'You try your best but you just do not get it.';
-    } else if (checkThisText.toLowerCase().indexOf('use') !== -1){
-        bigText.innerHTML = 'Neither of us know how to use that.';
-    }  else {
-        bigText.innerHTML = 'Ok listen up. Down below you have a list of actions you can do. If you see a word like <em>this</em> then you can interact with it in some way. Type <em>look</em> to take a look at the room again.'
+    if (whatRoomWeIn === 'start') {
+        if (checkThisText.toLowerCase().indexOf('look') !== -1 && firstCommand === false) {
+            bigText.innerHTML = 'When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and <em>look</em> at the <em>door</em>.';
+            firstCommand = true;
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && firstCommand === true) {
+            bigText.innerHTML = "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>.";
+            addNewCommand("Go");
+        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && didPlayerPullLever === false) {
+            bigText.innerHTML = "So far so good. You are now in the tutorial proper. You hear the door behind you lock and shortly after you hear the room you came from, cave in, become radioactive and fade from reality. You weren't supposed to be there anyway. This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.";
+            addNewCommand("Get");
+            whatRoomWeIn = 'tutorial';
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && firstCommand === true) {
+            bigText.innerHTML = "When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and <em>look</em> at the <em>door</em>.";
+        } else {
+            bigText.innerHTML = "Words are hard but I'm going to need you to trust me and type what I say. Go ahead and type <em>look</em>."
+        }
+    } else if (whatRoomWeIn === 'tutorial') {
+        if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1) {
+            bigText.innerHTML = "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere.";
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && didPlayerPullLever === false) {
+            bigText.innerHTML = "It's glass and it's preventing you from pressing the button. What else do you want?";
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1 && didPlayerPullLever === false) {
+            bigText.innerHTML = "It's red round and <em>press</em>able. If only that dang <em>glass</em> wasn't in the way.";
+        }
     }
 }

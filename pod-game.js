@@ -1,3 +1,5 @@
+// Keep all new variables up here for organization
+
 var inventory = ['<ul>', '</ul>'];
 var availableActions = ['<ul>', '<li>', 'Look', '</li>', '</ul>'];
 var bigText = document.getElementById('big-text-text');
@@ -13,6 +15,8 @@ var tutorialButtonPushed = false;
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
+// This makes the text box work. Don't touch this
+
 submitButton.addEventListener('click', checkKeyWords);
 submittedText.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -20,6 +24,8 @@ submittedText.addEventListener("keyup", function(event) {
         submitButton.click();
     }
 });
+
+// This let's you add items. Pass the arguments as strings and it will add to the inventory and the list of available actions. It incorporates the strings well enough to make them keywords.
 
 function youGotAnItem(itemName, itemAction) {
     if (inventory.includes(itemName) === true) {
@@ -40,6 +46,8 @@ function youGotAnItem(itemName, itemAction) {
     }
 }
 
+// This let's you add to the action list without adding an item. I was using it for the tutorial but not sure if it's going to be used much now.
+
 function addNewCommand(newAction) {
     if (availableActions.includes(newAction) === true) {
         return "oops";
@@ -53,6 +61,8 @@ function addNewCommand(newAction) {
     }
 }
 
+// This takes away the item from the inventory and the action that came with it. Pass the arguments as strings and make sure they are spelled correctly and capitalized correctly. If you do that then it just works.
+
 function removeItemAndCommand(itemName, itemAction) {
     var itemPosition = inventory.indexOf(itemName) - 1;
     var actionPosition = availableActions.indexOf(itemAction) - 1;
@@ -64,19 +74,25 @@ function removeItemAndCommand(itemName, itemAction) {
     }
 }
 
+// This is a shenanigan. Don't worry about it.
+
 function gameOver() {
     bigText.innerHTML = "<h1>GAME OVER</h1>";
 }
+
+// This is probably going to end up being 95% of our code. It checks whatRoomWeIn and based on what room we in, it will check the nested conditionals. When you add commands to Go places, make sure to change the room variable.
+// The else if statements are meant to be mass copy/pasted. The bottom of 'tutorial' has examples of default text, if the player doesn't use 2 keywords.
+// Use variables to keep track of the state of the room. Such as whether a button has been pressed or not. You can use inventory.includes to check to see if the player has the required item or availableActions.includes to see if they have the required action.
 
 function checkKeyWords() {
     var checkThisText = submittedText.value;
     submittedText.value = '';
     if (whatRoomWeIn === 'start') {
         if (checkThisText.toLowerCase().indexOf('look') !== -1 && firstCommand === false) {
-            bigText.innerHTML = 'When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and <em>look</em> at the <em>door</em>.';
+            bigText.innerHTML = 'When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>.';
             firstCommand = true;
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('door') !== -1 && firstCommand === true) {
-            bigText.innerHTML = "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. The tutorial is still <em>north</em> so why don't you <em>go north</em>.";
+            bigText.innerHTML = "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>.";
             addNewCommand("Go");
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && availableActions.includes('Go')) {
             bigText.innerHTML = "So far so good. You are now in the tutorial proper. You hear the door behind you lock and shortly after you hear the room you came from, cave in, become radioactive and fade from reality. You weren't supposed to be there anyway. This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.";

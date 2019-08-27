@@ -1,4 +1,5 @@
 // Keep all new variables up here for organization
+// For testing we can come up here and set up where we want the player to be by changing the starting value
 
 var inventory = ['<ul>', '</ul>'];
 var availableActions = ['<ul>', '<li>', 'Look', '</li>', '</ul>'];

@@ -81,6 +81,10 @@ footer.commands-box {
     border-top: 2px solid #418207;
 }
 
+footer li {
+    font-size: 3em;
+}
+
 ul {
     list-style-type: none;
     display: flex;

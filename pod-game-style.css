@@ -57,15 +57,21 @@ section.input-div {
 }
 
 #text-input {
-    height: 90%;
+    height: 95%;
     width: 100%;
 }
-
 textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
     background-color: black;
     color: #418207;
     font-size: 40px;
     font-family: 'VT323', monospace;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
 }
 
 button {

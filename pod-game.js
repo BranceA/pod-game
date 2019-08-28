@@ -90,7 +90,11 @@ function gameOver() {
 //This function converts player input to lowercase and checks to see if its an index of the required command to progress. Mainly a way to clean up the code and make it more readable.
 
 function checkText(playerInput, requiredCommand) {
+
     return playerInput.toLowerCase().indexOf(requiredCommand) !== -1;
+
+
+
 }
 
 // This function
@@ -184,15 +188,15 @@ function checkKeyWords() {
 
             removeItemAndCommand("Hammer", "Smash");
 
-        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1  && isGlassSmashed === true) {
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass')  && isGlassSmashed === true) {
 
             bigText.innerHTML = "You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history.";
 
-        } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1  && isGlassSmashed === false) {
+        } else if (checkText(checkThisText,'use') && checkText(checkThisText,'button')  && isGlassSmashed === false) {
 
             bigText.innerHTML = "You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button.";
 
-        } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1  && isGlassSmashed === true) {
+        } else if (checkText(checkThisText,'use') && checkText(checkThisText,'button')  && isGlassSmashed === true) {
 
             bigText.innerHTML = "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew.";
 
@@ -256,23 +260,3 @@ function checkKeyWords() {
 } //end of main function
 
 
-
-//RYAN's ROOM - WILL ADD TOO ELSE IF ONCE WE SEE HOW TO BEST IMPLEMENT
-
-
-
-// function checkText(playerInput, requiredCommand) {
-//     return playerInput.toLowerCase().indexOf(requiredCommand) !== -1;
-// }
-//
-// whatRoomWeIn = 'ryanRoom';
-//
-// if(whatRoomWeIn === 'ryanRoom') {
-//
-//     if(checkText(checkThisText, 'look') && whatRoomWeIn === 'ryanRoom') {
-//
-//         $('.big-text').html('Hey There');
-//
-//     } //end of if statement
-//
-// } //end of if statement

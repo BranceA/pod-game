@@ -167,3 +167,21 @@ function checkKeyWords() {
         }
     }
 }
+
+
+
+//RYAN's ROOM - WILL ADD TOO ELSE IF ONCE WE SEE HOW TO BEST IMPLEMENT
+
+
+
+// function checkText(playerInput, requiredCommand) {
+//     return playerInput.toLowerCase().indexOf(requiredCommand) !== -1;
+// }
+//
+// else if(whatRoomWeIn === 'ryanRoom') {
+//
+//     if(checkText(checkThisText, requiredCommand) && checkText(checkThisText, requiredCommand) {
+//         $('.big-text').html('')
+//     } //end of if statement
+//
+// } //end of if statement

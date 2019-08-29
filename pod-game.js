@@ -149,6 +149,7 @@ function checkKeyWords() {
             bigText.innerHTML = "You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game.";
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1  && tutorialButtonPushed === true) {
             bigText.innerHTML = "Game Start. Add something better later.";
+            whatRoomWeIn = "center";
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1) {
             bigText.innerHTML = "You try your best but you just don't get it.";
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1) {
@@ -166,5 +167,7 @@ function checkKeyWords() {
         } else {
             bigText.innerHTML = "I'm telling you almost exactly what to do. Type <em>look</em> and try to get your bearings"
         }
+    } else if (whatRoomWeIn === 'center') {
+        
     }
 }

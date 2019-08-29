@@ -99,6 +99,7 @@ function checkText(playerInput, requiredCommand) {
 
 // This function
 function checkKeyWords() {
+
     var checkThisText = submittedText.value;
     submittedText.value = '';
 
@@ -137,7 +138,9 @@ function checkKeyWords() {
 
     } else if (whatRoomWeIn === 'tutorial') { //START OF TUTORIAL
 
-        if (checkText(checkThisText,'look') &&  checkThisText(checkThisText, 'door')) {
+
+
+        if (checkText(checkThisText,'look') &&  checkText(checkThisText, 'door')) {
 
             bigText.innerHTML = "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere.";
 
@@ -153,7 +156,7 @@ function checkKeyWords() {
 
             bigText.innerHTML = "That's where the door is. Try and keep up.";
 
-        } else if (checkText(checkThisText,'look') || checkText(checkThisText,'go') && checkText(checkThisText,'south')) {
+        } else if ((checkText(checkThisText,'look') || checkText(checkThisText,'go')) && checkText(checkThisText,'south')) {
 
             bigText.innerHTML = "You turn around and see nothing. When I say nothing, I truly mean nothing. If you picture the empty void of space, you still picture a black void. You don't even see a black void, you see nothing. Your mind turns somersaults as it comes to terms with experiencing true nonexistence. ABANDON ALL HOPE YE WHO ENTER HERE!";
 

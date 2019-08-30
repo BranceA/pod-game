@@ -7,7 +7,7 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'start';
+var whatRoomWeIn = 'ryan';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
@@ -258,7 +258,26 @@ function checkKeyWords() {
             bigText.innerHTML = "I'm telling you almost exactly what to do. Type <em>look</em> and try to get your bearings"
 
         }
+    } else if(whatRoomWeIn === 'ryan') {
+        if (checkText(checkThisText, 'look') && checkText(checkThisText, 'bed')) {
+
+            $('.big-text').html('ouyay idn\'tday inkthay otay ashway ethay eetsshay oryay akemay ouryay edbay ? ouryay othermay isn\'tyay oinggay otay ebay appyhay . anywaysyay , ouryay edbay isyay ayay ittlelay ootay allsmay orfay ouyay atyay isthay ointpay , anymay earsyay avehay assedpay incesay ouryay ildhoodchay aysday illtay isthay eadfuldray ayday enwhay ouyay ereway idnappedkay ybay ethay evilyay izardway eslielay . othingnay erehay otay eesay utbay oldyay emoriesmay , etlay usyay <em>look</em> atyay ethay oomray againyay .');
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'aquarium')) {
+
+            $('big-text').html('The <em>babbelfish</em> is effortlessly swimming around the clean pristine water in a really nice tank. Actually, who made this tank, it\'s really nice. I like a nice tank. Anyways, I\'m kind of babbling here.');
+
+        } else if (checkText(checkThisText, 'look')) {
+
+            $('.big-text').html('ouyay indfay ourselfyay inyay ayay allsmay uantqay oomray atthay aguelyvay esemblesray ouryay ildhoodchay oomray . inyay ethay ornercay isyay ayay <em>bed</em> ithway edsheetsbay emblazonedyay ithway ouryay avoritefay arriorway . onyay ayay abletay alongyay ethay allway isyay ayay ishfay <em>aquarium</em> ithway ethay areray abblefishbay immingsway inyay ityay . iyay onderway atwhay atthay oesday ?');
+
+        }
+
+
+
+
     } //end of else if for tutorial
+
 
 } //end of main function
 

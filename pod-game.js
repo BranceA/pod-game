@@ -14,6 +14,7 @@ var firstCommand = false;
 var didHammerGetGot = false;
 var tutorialButtonPushed = false;
 var didStandUp = false;
+var mooseStatus = "unseen";
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -329,9 +330,19 @@ function checkKeyWords() {
 
             bigText.innerHTML = "Mahogany";
 
-        } else if (checkText(checkThisText, 'get') && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'east') || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
+        } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'east') || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
 
             bigText.innerHTML = "That's a direction. I've had to delete five different responses because I don't know how to deal to this.";
+
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "unseen") {
+
+            bigText.innerHTML = "You mosey on over to the door to the <em>west</em>. The door is unlocked so you open it up. In the next room you see a monstrosity. There is a hulking creature on the far side of the room. You have heard tales of the <em>Dire Moose</em> but you didn't think they were real. You feel true terror as the <em>Dire Moose</em>'s solid black eyes meet your own. The <em>Dire Moose</em> unleashes a roar that makes you realize how truly insignificant you are. It charges towards you at a speed that should be impossible for a creature it's size. You close the door.";
+
+            mooseStatus = "seen";
+
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "seen") {
+
+            bigText.innerHTML = "How about you don't do that? You really need to find a way to deal with the <em>Dire Moose</em>.";
 
         }
     }

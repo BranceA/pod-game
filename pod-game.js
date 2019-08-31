@@ -8,11 +8,12 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'start';
+var whatRoomWeIn = 'center';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
 var tutorialButtonPushed = false;
+var didStandUp = false;
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -75,6 +76,12 @@ function removeItemAndCommand(itemName, itemAction) {
     }
 }
 
+function skipToCenter() {
+    addNewCommand("Get");
+    addNewCommand("Use");
+    addNewCommand("Go");
+}
+
 // This is a shenanigan. Don't worry about it.
 
 function gameOver() {
@@ -112,7 +119,7 @@ function checkKeyWords() {
 
             firstCommand = true;
 
-        } else if (checkText(checkThisText,'look') && (checkText(checkThisText, 'door')) && firstCommand === true) {
+        } else if (checkText(checkThisText, 'look') && (checkText(checkThisText, 'door')) && firstCommand === true) {
 
             bigText.innerHTML = "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>.";
 
@@ -140,8 +147,7 @@ function checkKeyWords() {
     } else if (whatRoomWeIn === 'tutorial') { //START OF TUTORIAL
 
 
-
-        if (checkText(checkThisText,'look') &&  checkText(checkThisText, 'door')) {
+        if (checkText(checkThisText, 'look') && checkText(checkThisText, 'door')) {
 
             bigText.innerHTML = "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere.";
 
@@ -149,15 +155,15 @@ function checkKeyWords() {
 
             bigText.innerHTML = "It's glass and it's preventing you from pressing the button. What else do you want?";
 
-        } else if (checkText(checkThisText,'look') && checkText(checkThisText,'button') && isGlassSmashed === false) {
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
             bigText.innerHTML = "It's red round and pressable. If only that dang <em>glass</em> wasn't in the way.";
 
-        } else if (checkText(checkThisText,'look') && checkText(checkThisText,'north')) {
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'north')) {
 
             bigText.innerHTML = "That's where the door is. Try and keep up.";
 
-        } else if ((checkText(checkThisText,'look') || checkText(checkThisText,'go')) && checkText(checkThisText,'south')) {
+        } else if ((checkText(checkThisText, 'look') || checkText(checkThisText, 'go')) && checkText(checkThisText, 'south')) {
 
             bigText.innerHTML = "You turn around and see nothing. When I say nothing, I truly mean nothing. If you picture the empty void of space, you still picture a black void. You don't even see a black void, you see nothing. Your mind turns somersaults as it comes to terms with experiencing true nonexistence. ABANDON ALL HOPE YE WHO ENTER HERE!";
 
@@ -167,22 +173,22 @@ function checkKeyWords() {
                 gameOver();
             }, 15000);
 
-        } else if (checkText(checkThisText,'look') && checkText(checkThisText,'hammer') && didHammerGetGot === false) {
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
             bigText.innerHTML = "It isn't very big and it's just sorta hanging on the wall. There is a sign that says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>.";
 
-        } else if (checkText(checkThisText,'get') && checkText(checkThisText,'hammer') && didHammerGetGot === false) {
+        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
             bigText.innerHTML = "You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the <em>door</em>.";
 
             youGotAnItem("Hammer", "Smash");
             didHammerGetGot = true;
 
-        } else if (checkText(checkThisText, 'smash') && checkText(checkThisText,'door')  && inventory.includes('Hammer')) {
+        } else if (checkText(checkThisText, 'smash') && checkText(checkThisText, 'door') && inventory.includes('Hammer')) {
 
             bigText.innerHTML = "Wow you are actually trying to break through this <em>door</em> with a <em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>";
 
-        } else if (checkThisText.toLowerCase().indexOf('smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1  && inventory.includes('Hammer') && isGlassSmashed === false) {
+        } else if (checkThisText.toLowerCase().indexOf('smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && inventory.includes('Hammer') && isGlassSmashed === false) {
 
             bigText.innerHTML = "This <em>hammer</em> is really here just so you don't have to smash open this thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. Like... I dunno... maybe a <em>button</em>?";
 
@@ -192,37 +198,37 @@ function checkKeyWords() {
 
             removeItemAndCommand("Hammer", "Smash");
 
-        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass')  && isGlassSmashed === true) {
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === true) {
 
             bigText.innerHTML = "You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history.";
 
-        } else if (checkText(checkThisText,'use') && checkText(checkThisText,'button')  && isGlassSmashed === false) {
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
             bigText.innerHTML = "You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button.";
 
-        } else if (checkText(checkThisText,'use') && checkText(checkThisText,'button')  && isGlassSmashed === true) {
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === true) {
 
             bigText.innerHTML = "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew.";
 
             tutorialButtonPushed = true;
 
-        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1  && isGlassSmashed === true) {
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
             bigText.innerHTML = "You look down at your former ally and salute the <em>hammer</em>. You couldn't have done it without him.";
 
-        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1  && isGlassSmashed === true) {
+        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
             bigText.innerHTML = "If you love something, then you set it free. Your time with <em>hammer</em> was a magical one. Time that you will cherish forever but it's time to move on.";
 
-        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1  && isGlassSmashed === true) {
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1 && isGlassSmashed === true) {
 
             bigText.innerHTML = "Though the <em>button</em> can't move, speak or think, you're pretty sure it is grateful to be freed.";
 
-        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1  && tutorialButtonPushed === false) {
+        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === false) {
 
             bigText.innerHTML = "You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game.";
 
-        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1  && tutorialButtonPushed === true) {
+        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === true) {
 
             bigText.innerHTML = "Game Start. Add something better later.";
 
@@ -263,7 +269,21 @@ function checkKeyWords() {
         }
 
     } else if (whatRoomWeIn === 'center') {
+        if (checkText(checkThisText, 'wololo')) {
 
+            bigText.innerHTML = "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>."
+
+            skipToCenter();
+
+        } else if (checkText(checkThisText, 'stand') && checkText(checkThisText, 'up') && didStandUp === false) {
+
+            bigText.innerHTML = "You stand the hell up.";
+
+            didStandUp = true;
+
+        } else if (didStandUp === false) {
+
+            bigText.innerHTML = "You think about doing that and it seems like a good idea. The first step towards accomplishing that is to <em>stand up</em>.";
+        }
     }
 }
-

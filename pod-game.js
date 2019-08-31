@@ -277,13 +277,46 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'stand') && checkText(checkThisText, 'up') && didStandUp === false) {
 
-            bigText.innerHTML = "You stand the hell up.";
+            bigText.innerHTML = "Sweet freedom. You take in your surroundings as you stretch. You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.";
 
             didStandUp = true;
 
         } else if (didStandUp === false) {
 
             bigText.innerHTML = "You think about doing that and it seems like a good idea. The first step towards accomplishing that is to <em>stand up</em>.";
+
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
+
+            bigText.innerHTML = "Looking at the <em>wall</em> you see that it is made of dirt. Wherever you are, it's likely underground. The symbols on the wall are a deep red and glowing faintly. It's nothing you want to understand and they give you the creeps.";
+
+        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
+
+            bigText.innerHTML = "I guess it is made of dirt. You scrape off some wall and put it in your pocket. You feel like a more complete person.";
+
+        } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
+
+            bigText.innerHTML = "Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.";
+
+        } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
+
+            bigText.innerHTML = "Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.";
+
+        } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
+
+            bigText.innerHTML = "You go right up to the <em>wall</em> and give it the stink eye.";
+
+        } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
+
+            bigText.innerHTML = "There is a five pointed star on the inside of a <em>circle</em> large enough for you to lay down in. An unlit candle is at each point of the star. It's understandably uncomfortable standing here so you pretend to be someplace nice. A place called not here.";
+
+        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
+
+            bigText.innerHTML = "It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.";
+
+        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
+
+            bigText.innerHTML = "It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.";
+
         }
     }
 }

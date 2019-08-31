@@ -188,7 +188,7 @@ function checkKeyWords() {
 
             bigText.innerHTML = "Wow you are actually trying to break through this <em>door</em> with a <em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>";
 
-        } else if (checkThisText.toLowerCase().indexOf('smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && inventory.includes('Hammer') && isGlassSmashed === false) {
+        } else if (checkText(checkThisText,'smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && inventory.includes('Hammer') && isGlassSmashed === false) {
 
             bigText.innerHTML = "This <em>hammer</em> is really here just so you don't have to smash open this thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. Like... I dunno... maybe a <em>button</em>?";
 
@@ -313,9 +313,25 @@ function checkKeyWords() {
 
             bigText.innerHTML = "It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.";
 
-        } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
+        } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
 
-            bigText.innerHTML = "It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.";
+            bigText.innerHTML = "You know nothing of magic. Even if you knew how to use the circle, it probably isn't a good idea.";
+
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'circle')) {
+
+            bigText.innerHTML = "You had wandered away from the circle. You return to the closest thing you have to a home in this place.";
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'west')) {
+
+            bigText.innerHTML = "There is a wooden door to the <em>west</em>. You swear that you can hear breathing coming from the other side.";
+
+        } else if (checkText(checkThisText, 'what type of wood')) {
+
+            bigText.innerHTML = "Mahogany";
+
+        } else if (checkText(checkThisText, 'get') && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'east') || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
+
+            bigText.innerHTML = "That's a direction. I've had to delete five different responses because I don't know how to deal to this.";
 
         }
     }

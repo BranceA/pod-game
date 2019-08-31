@@ -16,6 +16,7 @@ var tutorialButtonPushed = false;
 var didStandUp = false;
 var mooseStatus = "unseen";
 var earingsStatus = "unseen";
+var staffStatus = "ground";
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -397,6 +398,34 @@ function checkKeyWords() {
             earingsStatus = "gotten";
 
             addNewItem("Hook");
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'head') && earingsStatus === "gotten") {
+
+            bigText.innerHTML = "It's the same head but with no earrings.";
+
+        } else if ((checkText(checkThisText, 'look') || checkText(checkThisText, 'get') || checkText(checkThisText, 'go') || checkText(checkThisText, 'use')) && checkText(checkThisText, 'podium')) {
+
+            bigText.innerHTML = "There's going to be a spellbook here later.";
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+
+            bigText.innerHTML = "This obviously has some kind of magical power. You do some quick detective work and deduce that the explosion you heard came from this <em>staff</em>. All surfaces radiating from around the staff are charred black. It is made from a fine polished wood, etched with runes and topped with a diamond.";
+
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+
+            bigText.innerHTML = "Listen here dumb dumb. That <em>staff</em> can go boom. You no know how to <em>use staff</em>.";
+
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+
+            bigText.innerHTML = "You walk until you get to the edge of what is probably a blast radius.";
+
+        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+
+            bigText.innerHTML = "You gingerly lift the <em>staff</em> off of the ground. Huh. This feels a lot like holding your old fishing pole.";
+
+            staffStatus = "gotten";
+
+            addNewItem("Pole");
 
         }
     }

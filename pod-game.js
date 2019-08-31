@@ -15,6 +15,7 @@ var didHammerGetGot = false;
 var tutorialButtonPushed = false;
 var didStandUp = false;
 var mooseStatus = "unseen";
+var earingsStatus = "unseen";
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -343,6 +344,42 @@ function checkKeyWords() {
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "seen") {
 
             bigText.innerHTML = "How about you don't do that? You really need to find a way to deal with the <em>Dire Moose</em>.";
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'head') && (earingsStatus === "unseen" || earingsStatus === "seen")) {
+
+            bigText.innerHTML = "The shrunken <em>head</em> is exactly what you think it is. It's icky and it's suspended from a rope that comes down from the ceiling and is tied to it's hair. It is wearing a pretty sweet set of hoop <em>earrings</em>. You are thinking of naming him Frank";
+
+            earingsStatus = "seen";
+
+        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'head')) {
+
+            bigText.innerHTML = "You grab the <em>head</em> and try to <em>get</em> it. The fact that the head is tied to the ceiling is preventing this.";
+
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'head')) {
+
+            bigText.innerHTML = "Use it to do what exactly?";
+
+        } else if (checkText(checkThisText, 'talk') && checkText(checkThisText, 'head')) {
+
+            bigText.innerHTML = "You discus your feelings with Frank. He is a very good listener.";
+
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'head')) {
+
+            bigText.innerHTML = "You coyly approach the head. You get so nervous around strangers.";
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'earring') && earingsStatus === "seen") {
+
+            bigText.innerHTML = "The <em>earrings</em> are the only ornamentation that the <em>head</em> has. They are large, circular and appear to be made out of gold.";
+
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'earring') && earingsStatus === "seen") {
+
+            bigText.innerHTML = "No. You can't do that. They are still attached to the <em>head</em>.";
+
+        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'earrings') && earingsStatus === "seen") {
+
+            bigText.innerHTML = "You take off one of the earrings. As a captive of Emperor Leslie, this holds no value to you as an earring. It would probably make a great fishing <em>hook</em>.";
+
+            earingsStatus = "gotten";
 
         }
     }

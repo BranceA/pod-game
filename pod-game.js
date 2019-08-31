@@ -78,6 +78,21 @@ function removeItemAndCommand(itemName, itemAction) {
     }
 }
 
+// This allows you to add a new Item without an action.
+
+function addNewItem(newItem) {
+    if (inventory.includes(newItem) === true) {
+        return "oops";
+    } else {
+        inventory.pop();
+        inventory.push('<li>');
+        inventory.push(newItem);
+        inventory.push('</li>');
+        inventory.push('</ul>');
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
+}
+
 function skipToCenter() {
     addNewCommand("Get");
     addNewCommand("Use");
@@ -380,6 +395,8 @@ function checkKeyWords() {
             bigText.innerHTML = "You take off one of the earrings. As a captive of Emperor Leslie, this holds no value to you as an earring. It would probably make a great fishing <em>hook</em>.";
 
             earingsStatus = "gotten";
+
+            addNewItem("Hook");
 
         }
     }

@@ -8,7 +8,7 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'center';
+var whatRoomWeIn = 'start';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
@@ -265,7 +265,7 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === true) {
 
-            bigText.innerHTML = "Game Start. Add something better later.";
+            bigText.innerHTML = "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>.";
 
             whatRoomWeIn = "center";
 
@@ -421,7 +421,8 @@ function checkKeyWords() {
                 submitButton.disabled = true;
 
                 var timeoutId = setTimeout(function () {
-                    itemCombine("Pole", "Hook", "Fishing Pole")
+                    itemCombine("Pole", "Hook", "Fishing Pole");
+                    addNewCommand("Fish");
                 }, 5000);
             }
 
@@ -458,7 +459,8 @@ function checkKeyWords() {
                 submitButton.disabled = true;
 
                 var timeoutId = setTimeout(function () {
-                    itemCombine("Pole", "Hook", "Fishing Pole")
+                    itemCombine("Pole", "Hook", "Fishing Pole");
+                    addNewCommand("Fish");
                 }, 5000);
             }
 

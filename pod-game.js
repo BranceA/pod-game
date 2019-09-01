@@ -94,6 +94,14 @@ function addNewItem(newItem) {
     }
 }
 
+function removeOneItem(itemName) {
+    var itemPosition = inventory.indexOf(itemName) - 1;
+    if (inventory.includes(itemName)) {
+        inventory.splice(itemPosition, 3);
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
+}
+
 function skipToCenter() {
     addNewCommand("Get");
     addNewCommand("Use");
@@ -104,6 +112,15 @@ function skipToCenter() {
 
 function gameOver() {
     bigText.innerHTML = "<h1>GAME OVER</h1>";
+}
+
+function itemCombine(itemOne, itemTwo, combinedItem) {
+    removeOneItem(itemOne);
+    removeOneItem(itemTwo);
+    addNewItem(combinedItem);
+    bigText.innerHTML = "You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into " + combinedItem;
+    submitButton.disabled = false;
+    submittedText.value = '';
 }
 
 // This is probably going to end up being 95% of our code. It checks whatRoomWeIn and based on what room we in, it will check the nested conditionals. When you add commands to Go places, make sure to change the room variable.
@@ -399,6 +416,15 @@ function checkKeyWords() {
 
             addNewItem("Hook");
 
+            if (inventory.includes("Pole") && inventory.includes("Hook")) {
+
+                submitButton.disabled = true;
+
+                var timeoutId = setTimeout(function () {
+                    itemCombine("Pole", "Hook", "Fishing Pole")
+                }, 5000);
+            }
+
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'head') && earingsStatus === "gotten") {
 
             bigText.innerHTML = "It's the same head but with no earrings.";
@@ -426,6 +452,31 @@ function checkKeyWords() {
             staffStatus = "gotten";
 
             addNewItem("Pole");
+
+            if (inventory.includes("Pole") && inventory.includes("Hook")) {
+
+                submitButton.disabled = true;
+
+                var timeoutId = setTimeout(function () {
+                    itemCombine("Pole", "Hook", "Fishing Pole")
+                }, 5000);
+            }
+
+        } else if (checkText(checkThisText, 'go')) {
+
+            bigText.innerHTML = "There are many places you can go. That is not one of them";
+
+        } else if (checkText(checkThisText, 'look')) {
+
+            bigText.innerHTML = "You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.";
+
+        } else if (checkText(checkThisText, 'get')) {
+
+            bigText.innerHTML = "I might want to get that too if I knew what it was.";
+
+        } else if (checkText(checkThisText, 'use')) {
+
+            bigText.innerHTML = "You use it to the best of your ability but nothing happens.";
 
         }
     }

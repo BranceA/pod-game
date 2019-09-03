@@ -34,7 +34,7 @@ submittedText.addEventListener("keyup", function(event) {
 
 function youGotAnItem(itemName, itemAction) {
     if (inventory.includes(itemName) === true) {
-        bigText.innerHTML = 'You already have that.';
+        $(".big-text").hide().html('You already have that.').fadeIn(800);
     } else {
         availableActions.pop();
         availableActions.push('<li>');
@@ -111,14 +111,14 @@ function skipToCenter() {
 // This is a shenanigan. Don't worry about it.
 
 function gameOver() {
-    bigText.innerHTML = "<h1>GAME OVER</h1>";
+    $(".big-text").hide().html("<h1>GAME OVER</h1>").fadeIn(800);
 }
 
 function itemCombine(itemOne, itemTwo, combinedItem) {
     removeOneItem(itemOne);
     removeOneItem(itemTwo);
     addNewItem(combinedItem);
-    bigText.innerHTML = "You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into " + combinedItem;
+    $(".big-text").hide().html("You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into " + combinedItem).fadeIn(800);
     submitButton.disabled = false;
     submittedText.value = '';
 }
@@ -150,19 +150,19 @@ function checkKeyWords() {
 
         if (checkText(checkThisText, 'look') && firstCommand === false) {
 
-            bigText.innerHTML = 'When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>.';
+            $(".big-text").hide().html('When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>.').fadeIn(800);
 
             firstCommand = true;
 
         } else if (checkText(checkThisText, 'look') && (checkText(checkThisText, 'door')) && firstCommand === true) {
 
-            bigText.innerHTML = "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>.";
+            $(".big-text").hide().html("This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>.").fadeIn(800);
 
             addNewCommand("Go");
 
         } else if (checkText(checkThisText, 'go') && (checkText(checkThisText, 'north')) && availableActions.includes('Go')) {
 
-            bigText.innerHTML = "So far so good. You are now in the tutorial proper. You hear the door behind you lock and shortly after you hear the room you came from cave in, become radioactive and fade from reality. You weren't supposed to be there anyway. This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.";
+            $(".big-text").hide().html("So far so good. You are now in the tutorial proper. You hear the door behind you lock and shortly after you hear the room you came from cave in, become radioactive and fade from reality. You weren't supposed to be there anyway. This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.").fadeIn(800);
 
             addNewCommand("Get"); //add new player command for the hammer
 
@@ -170,11 +170,11 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && firstCommand === true) {
 
-            bigText.innerHTML = "When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and <em>look</em> at the <em>door</em>.";
+            $(".big-text").hide().html("When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and <em>look</em> at the <em>door</em>.").fadeIn(800);
 
         } else { //if player enters wrong combination of words
 
-            bigText.innerHTML = "Words are hard but I'm going to need you to trust me and type what I say. Go ahead and type <em>look</em>."
+            $(".big-text").hide().html("Words are hard but I'm going to need you to trust me and type what I say. Go ahead and type <em>look</em>").fadeIn(800);
         }
 
         //END OF START
@@ -184,23 +184,23 @@ function checkKeyWords() {
 
         if (checkText(checkThisText, 'look') && checkText(checkThisText, 'door')) {
 
-            bigText.innerHTML = "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere.";
+            $(".big-text").hide().html("It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === false) {
 
-            bigText.innerHTML = "It's glass and it's preventing you from pressing the button. What else do you want?";
+            $(".big-text").hide().html("It's glass and it's preventing you from pressing the button. What else do you want?").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
-            bigText.innerHTML = "It's red round and pressable. If only that dang <em>glass</em> wasn't in the way.";
+            $(".big-text").hide().html("It's red round and pressable. If only that dang <em>glass</em> wasn't in the way.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'north')) {
 
-            bigText.innerHTML = "That's where the door is. Try and keep up.";
+            $(".big-text").hide().html("That's where the door is. Try and keep up.").fadeIn(800);
 
         } else if ((checkText(checkThisText, 'look') || checkText(checkThisText, 'go')) && checkText(checkThisText, 'south')) {
 
-            bigText.innerHTML = "You turn around and see nothing. When I say nothing, I truly mean nothing. If you picture the empty void of space, you still picture a black void. You don't even see a black void, you see nothing. Your mind turns somersaults as it comes to terms with experiencing true nonexistence. ABANDON ALL HOPE YE WHO ENTER HERE!";
+            $(".big-text").hide().html("You turn around and see nothing. When I say nothing, I truly mean nothing. If you picture the empty void of space, you still picture a black void. You don't even see a black void, you see nothing. Your mind turns somersaults as it comes to terms with experiencing true nonexistence. ABANDON ALL HOPE YE WHO ENTER HERE!").fadeIn(800);
 
             submitButton.disabled = true;
 
@@ -210,22 +210,22 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
-            bigText.innerHTML = "It isn't very big and it's just sorta hanging on the wall. There is a sign that says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>.";
+            $(".big-text").hide().html("It isn't very big and it's just sorta hanging on the wall. There is a sign that says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
-            bigText.innerHTML = "You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the <em>door</em>.";
+            $(".big-text").hide().html("You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the <em>door</em>.").fadeIn(800);
 
             youGotAnItem("Hammer", "Smash");
             didHammerGetGot = true;
 
         } else if (checkText(checkThisText, 'smash') && checkText(checkThisText, 'door') && inventory.includes('Hammer')) {
 
-            bigText.innerHTML = "Wow you are actually trying to break through this <em>door</em> with a <em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>";
+            $(".big-text").hide().html("Wow you are actually trying to break through this <em>door</em> with a <em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>").fadeIn(800);
 
         } else if (checkText(checkThisText,'smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && inventory.includes('Hammer') && isGlassSmashed === false) {
 
-            bigText.innerHTML = "This <em>hammer</em> is really here just so you don't have to smash open this thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. Like... I dunno... maybe a <em>button</em>?";
+            $(".big-text").hide().html("This <em>hammer</em> is really here just so you don't have to smash open this thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. Like... I dunno... maybe a <em>button</em>?").fadeIn(800);
 
             isGlassSmashed = true;
 
@@ -235,182 +235,182 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === true) {
 
-            bigText.innerHTML = "You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history.";
+            $(".big-text").hide().html("You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
-            bigText.innerHTML = "You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button.";
+            $(".big-text").hide().html("You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === true) {
 
-            bigText.innerHTML = "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew.";
+            $(".big-text").hide().html("You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew.").fadeIn(800);
 
             tutorialButtonPushed = true;
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
-            bigText.innerHTML = "You look down at your former ally and salute the <em>hammer</em>. You couldn't have done it without him.";
+            $(".big-text").hide().html("You look down at your former ally and salute the <em>hammer</em>. You couldn't have done it without him.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
-            bigText.innerHTML = "If you love something, then you set it free. Your time with <em>hammer</em> was a magical one. Time that you will cherish forever but it's time to move on.";
+            $(".big-text").hide().html("If you love something, then you set it free. Your time with <em>hammer</em> was a magical one. Time that you will cherish forever but it's time to move on.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1 && isGlassSmashed === true) {
 
-            bigText.innerHTML = "Though the <em>button</em> can't move, speak or think, you're pretty sure it is grateful to be freed.";
+            $(".big-text").hide().html("Though the <em>button</em> can't move, speak or think, you're pretty sure it is grateful to be freed.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === false) {
 
-            bigText.innerHTML = "You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game.";
+            $(".big-text").hide().html("You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === true) {
 
-            bigText.innerHTML = "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>.";
+            $(".big-text").hide().html("Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>.").fadeIn(800);
 
             whatRoomWeIn = "center";
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1) {
 
-            bigText.innerHTML = "You try your best but you just don't get it.";
+            $(".big-text").hide().html("You try your best but you just don't get it.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1) {
 
-            bigText.innerHTML = "You begin to go there but then decide against it.";
+            $(".big-text").hide().html("You begin to go there but then decide against it.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('use') !== -1) {
 
-            bigText.innerHTML = "You fiddle with it but without an instruction manuel, you're not sure how to use it.";
+            $(".big-text").hide().html("You fiddle with it but without an instruction manuel, you're not sure how to use it.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('smash') !== -1 && inventory.includes("Hammer")) {
 
-            bigText.innerHTML = "You smash it as hard as you can with your tiny hammer. You hear a plink and there is no noticeable change.";
+            $(".big-text").hide().html("You smash it as hard as you can with your tiny hammer. You hear a plink and there is no noticeable change.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && didHammerGetGot === false && isGlassSmashed === false) {
 
-            bigText.innerHTML = "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it.";
+            $(".big-text").hide().html("This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && didHammerGetGot === true && isGlassSmashed === false) {
 
-            bigText.innerHTML = "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it.";
+            $(".big-text").hide().html("This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && didHammerGetGot === true && isGlassSmashed === true) {
 
-            bigText.innerHTML = "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and I small <em>hammer</em> on the ground";
+            $(".big-text").hide().html("This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and I small <em>hammer</em> on the ground").fadeIn(800);
 
         } else {
 
-            bigText.innerHTML = "I'm telling you almost exactly what to do. Type <em>look</em> and try to get your bearings"
+            $(".big-text").hide().html("I'm telling you almost exactly what to do. Type <em>look</em> and try to get your bearings").fadeIn(800);
 
         }
 
     } else if (whatRoomWeIn === 'center') {
         if (checkText(checkThisText, 'wololo')) {
 
-            bigText.innerHTML = "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>."
+            $(".big-text").hide().html("Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>").fadeIn(800);
 
             skipToCenter();
 
         } else if (checkText(checkThisText, 'stand') && checkText(checkThisText, 'up') && didStandUp === false) {
 
-            bigText.innerHTML = "Sweet freedom. You take in your surroundings as you stretch. You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.";
+            $(".big-text").hide().html("Sweet freedom. You take in your surroundings as you stretch. You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.").fadeIn(800);
 
             didStandUp = true;
 
         } else if (didStandUp === false) {
 
-            bigText.innerHTML = "You think about doing that and it seems like a good idea. The first step towards accomplishing that is to <em>stand up</em>.";
+            $(".big-text").hide().html("You think about doing that and it seems like a good idea. The first step towards accomplishing that is to <em>stand up</em>.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
 
-            bigText.innerHTML = "Looking at the <em>wall</em> you see that it is made of dirt. Wherever you are, it's likely underground. The symbols on the wall are a deep red and glowing faintly. It's nothing you want to understand and they give you the creeps.";
+            $(".big-text").hide().html("Looking at the <em>wall</em> you see that it is made of dirt. Wherever you are, it's likely underground. The symbols on the wall are a deep red and glowing faintly. It's nothing you want to understand and they give you the creeps.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
 
-            bigText.innerHTML = "I guess it is made of dirt. You scrape off some wall and put it in your pocket. You feel like a more complete person.";
+            $(".big-text").hide().html("I guess it is made of dirt. You scrape off some wall and put it in your pocket. You feel like a more complete person.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
 
-            bigText.innerHTML = "Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.";
+            $(".big-text").hide().html("Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
 
-            bigText.innerHTML = "Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.";
+            $(".big-text").hide().html("Use it how? The <em>wall</em>'s entire purpose is to be a barrier between two places. It's is currently fulfilling it's mission.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('wall') !== -1) {
 
-            bigText.innerHTML = "You go right up to the <em>wall</em> and give it the stink eye.";
+            $(".big-text").hide().html("You go right up to the <em>wall</em> and give it the stink eye.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
 
-            bigText.innerHTML = "There is a five pointed star on the inside of a <em>circle</em> large enough for you to lay down in. An unlit candle is at each point of the star. It's understandably uncomfortable standing here so you pretend to be someplace nice. A place called not here.";
+            $(".big-text").hide().html("There is a five pointed star on the inside of a <em>circle</em> large enough for you to lay down in. An unlit candle is at each point of the star. It's understandably uncomfortable standing here so you pretend to be someplace nice. A place called not here.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
 
-            bigText.innerHTML = "It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.";
+            $(".big-text").hide().html("It's a circle painted on the ground. You cannot acquire a two dimensional shape painted on the ground.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('use') !== -1 && checkThisText.toLowerCase().indexOf('circle') !== -1) {
 
-            bigText.innerHTML = "You know nothing of magic. Even if you knew how to use the circle, it probably isn't a good idea.";
+            $(".big-text").hide().html("You know nothing of magic. Even if you knew how to use the circle, it probably isn't a good idea.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'circle')) {
 
-            bigText.innerHTML = "You had wandered away from the circle. You return to the closest thing you have to a home in this place.";
+            $(".big-text").hide().html("You had wandered away from the circle. You return to the closest thing you have to a home in this place.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'west')) {
 
-            bigText.innerHTML = "There is a wooden door to the <em>west</em>. You swear that you can hear breathing coming from the other side.";
+            $(".big-text").hide().html("There is a wooden door to the <em>west</em>. You swear that you can hear breathing coming from the other side.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'what type of wood')) {
 
-            bigText.innerHTML = "Mahogany";
+            $(".big-text").hide().html("Mahogany").fadeIn(800);
 
         } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'east') || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
 
-            bigText.innerHTML = "That's a direction. I've had to delete five different responses because I don't know how to deal to this.";
+            $(".big-text").hide().html("That's a direction. I've had to delete five different responses because I don't know how to deal to this.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "unseen") {
 
-            bigText.innerHTML = "You mosey on over to the door to the <em>west</em>. The door is unlocked so you open it up. In the next room you see a monstrosity. There is a hulking creature on the far side of the room. You have heard tales of the <em>Dire Moose</em> but you didn't think they were real. You feel true terror as the <em>Dire Moose</em>'s solid black eyes meet your own. The <em>Dire Moose</em> unleashes a roar that makes you realize how truly insignificant you are. It charges towards you at a speed that should be impossible for a creature it's size. You close the door.";
+            $(".big-text").hide().html("You mosey on over to the door to the <em>west</em>. The door is unlocked so you open it up. In the next room you see a monstrosity. There is a hulking creature on the far side of the room. You have heard tales of the <em>Dire Moose</em> but you didn't think they were real. You feel true terror as the <em>Dire Moose</em>'s solid black eyes meet your own. The <em>Dire Moose</em> unleashes a roar that makes you realize how truly insignificant you are. It charges towards you at a speed that should be impossible for a creature it's size. You close the door.").fadeIn(800);
 
             mooseStatus = "seen";
 
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "seen") {
 
-            bigText.innerHTML = "How about you don't do that? You really need to find a way to deal with the <em>Dire Moose</em>.";
+            $(".big-text").hide().html("How about you don't do that? You really need to find a way to deal with the <em>Dire Moose</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'head') && (earingsStatus === "unseen" || earingsStatus === "seen")) {
 
-            bigText.innerHTML = "The shrunken <em>head</em> is exactly what you think it is. It's icky and it's suspended from a rope that comes down from the ceiling and is tied to it's hair. It is wearing a pretty sweet set of hoop <em>earrings</em>. You are thinking of naming him Frank";
+            $(".big-text").hide().html("The shrunken <em>head</em> is exactly what you think it is. It's icky and it's suspended from a rope that comes down from the ceiling and is tied to it's hair. It is wearing a pretty sweet set of hoop <em>earrings</em>. You are thinking of naming him Frank").fadeIn(800);
 
             earingsStatus = "seen";
 
         } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'head')) {
 
-            bigText.innerHTML = "You grab the <em>head</em> and try to <em>get</em> it. The fact that the head is tied to the ceiling is preventing this.";
+            $(".big-text").hide().html("You grab the <em>head</em> and try to <em>get</em> it. The fact that the head is tied to the ceiling is preventing this.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'head')) {
 
-            bigText.innerHTML = "Use it to do what exactly?";
+            $(".big-text").hide().html("Use it to do what exactly?").fadeIn(800);
 
         } else if (checkText(checkThisText, 'talk') && checkText(checkThisText, 'head')) {
 
-            bigText.innerHTML = "You discus your feelings with Frank. He is a very good listener.";
+            $(".big-text").hide().html("You discus your feelings with Frank. He is a very good listener.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'head')) {
 
-            bigText.innerHTML = "You coyly approach the head. You get so nervous around strangers.";
+            $(".big-text").hide().html("You coyly approach the head. You get so nervous around strangers.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'earring') && earingsStatus === "seen") {
 
-            bigText.innerHTML = "The <em>earrings</em> are the only ornamentation that the <em>head</em> has. They are large, circular and appear to be made out of gold.";
+            $(".big-text").hide().html("The <em>earrings</em> are the only ornamentation that the <em>head</em> has. They are large, circular and appear to be made out of gold.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'earring') && earingsStatus === "seen") {
 
-            bigText.innerHTML = "No. You can't do that. They are still attached to the <em>head</em>.";
+            $(".big-text").hide().html("No. You can't do that. They are still attached to the <em>head</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'earrings') && earingsStatus === "seen") {
 
-            bigText.innerHTML = "You take off one of the earrings. As a captive of Emperor Leslie, this holds no value to you as an earring. It would probably make a great fishing <em>hook</em>.";
+            $(".big-text").hide().html("You take off one of the earrings. As a captive of Emperor Leslie, this holds no value to you as an earring. It would probably make a great fishing <em>hook</em>.").fadeIn(800);
 
             earingsStatus = "gotten";
 
@@ -428,27 +428,27 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'head') && earingsStatus === "gotten") {
 
-            bigText.innerHTML = "It's the same head but with no earrings.";
+            $(".big-text").hide().html("It's the same head but with no earrings.").fadeIn(800);
 
         } else if ((checkText(checkThisText, 'look') || checkText(checkThisText, 'get') || checkText(checkThisText, 'go') || checkText(checkThisText, 'use')) && checkText(checkThisText, 'podium')) {
 
-            bigText.innerHTML = "There's going to be a spellbook here later.";
+            $(".big-text").hide().html("There's going to be a spellbook here later.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
-            bigText.innerHTML = "This obviously has some kind of magical power. You do some quick detective work and deduce that the explosion you heard came from this <em>staff</em>. All surfaces radiating from around the staff are charred black. It is made from a fine polished wood, etched with runes and topped with a diamond.";
+            $(".big-text").hide().html("This obviously has some kind of magical power. You do some quick detective work and deduce that the explosion you heard came from this <em>staff</em>. All surfaces radiating from around the staff are charred black. It is made from a fine polished wood, etched with runes and topped with a diamond.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
-            bigText.innerHTML = "Listen here dumb dumb. That <em>staff</em> can go boom. You no know how to <em>use staff</em>.";
+            $(".big-text").hide().html("Listen here dumb dumb. That <em>staff</em> can go boom. You no know how to <em>use staff</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
-            bigText.innerHTML = "You walk until you get to the edge of what is probably a blast radius.";
+            $(".big-text").hide().html("You walk until you get to the edge of what is probably a blast radius.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
-            bigText.innerHTML = "You gingerly lift the <em>staff</em> off of the ground. Huh. This feels a lot like holding your old fishing pole.";
+            $(".big-text").hide().html("You gingerly lift the <em>staff</em> off of the ground. Huh. This feels a lot like holding your old fishing pole.").fadeIn(800);
 
             staffStatus = "gotten";
 
@@ -466,19 +466,19 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'go')) {
 
-            bigText.innerHTML = "There are many places you can go. That is not one of them";
+            $(".big-text").hide().html("There are many places you can go. That is not one of them").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look')) {
 
-            bigText.innerHTML = "You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.";
+            $(".big-text").hide().html("You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em> a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'get')) {
 
-            bigText.innerHTML = "I might want to get that too if I knew what it was.";
+            $(".big-text").hide().html("I might want to get that too if I knew what it was.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use')) {
 
-            bigText.innerHTML = "You use it to the best of your ability but nothing happens.";
+            $(".big-text").hide().html("You use it to the best of your ability but nothing happens.").fadeIn(800);
 
         }
     }

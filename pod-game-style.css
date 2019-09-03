@@ -21,7 +21,8 @@ header {
 
 main.big-text {
     grid-area: 2 / 2 / 3 / 3;
-    padding-right: 5em;
+    padding-right: 1em;
+    padding-left: 1em;
     font-size: 2em;
 }
 
@@ -53,7 +54,8 @@ aside li {
 
 section.input-div {
     grid-area: 3 / 2 / 4 / 3;
-    padding-right: 5em;
+    padding-right: 2em;
+    padding-left: 2em;
 }
 
 #text-input {

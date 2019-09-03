@@ -8,7 +8,7 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'start';
+var whatRoomWeIn = 'center';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
@@ -463,6 +463,10 @@ function checkKeyWords() {
                     addNewCommand("Fish");
                 }, 5000);
             }
+
+        } else if (checkText(checkThisText, 'fish') && checkText(checkThisText, 'moose') && mooseStatus === "seen" && availableActions.includes("Fish")) {
+
+            $(".big-text").hide().html("There are good ideas and bad ideas. Using a fishing pole to try and catch a <em>Dire Moose</em> will go down in history as the most poorly thought out plan that has ever been conceived by arguably intelligent life.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'go')) {
 

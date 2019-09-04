@@ -11,6 +11,10 @@ body {
     font-family: 'VT323', monospace;
 }
 
+textarea::placeholder {
+    color: #418207;
+}
+
 header {
     width: 100%;
     border-bottom: 2px solid #418207;
@@ -84,9 +88,17 @@ footer.commands-box {
     grid-area: -2 / 1 / -1 / -1;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-right: 5em;
     padding-left: 5em;
     border-top: 2px solid #418207;
+}
+
+#small-text {
+    display: flex;
+    align-self: flex-start;
+    position: fixed;
+    text-decoration: underline;
 }
 
 footer li {
@@ -107,9 +119,9 @@ ul {
     font-size: 40px;
     color: #fff;
     text-align: center;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+    -webkit-animation: glow 2s ease-in-out infinite alternate;
+    -moz-animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes glow {

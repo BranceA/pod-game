@@ -8,7 +8,7 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'center';
+var whatRoomWeIn = 'start';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
@@ -17,6 +17,8 @@ var didStandUp = false;
 var mooseStatus = "unseen";
 var earingsStatus = "unseen";
 var staffStatus = "ground";
+
+window.onload = document.getElementById('text-input').select();
 
 commandsFooter.innerHTML = availableActions.join(" ");
 

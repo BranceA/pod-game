@@ -8,7 +8,7 @@ var commandsFooter = document.getElementById('commands-box');
 var submitButton = document.getElementById('submit');
 var submittedText = document.getElementById('text-input');
 var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'start';
+var whatRoomWeIn = 'pageload';
 var isGlassSmashed = false;
 var firstCommand = false;
 var didHammerGetGot = false;
@@ -17,6 +17,7 @@ var didStandUp = false;
 var mooseStatus = "unseen";
 var earingsStatus = "unseen";
 var staffStatus = "ground";
+var decidedOnTutorial = false;
 
 window.onload = document.getElementById('text-input').select();
 
@@ -147,8 +148,21 @@ function checkKeyWords() {
 
     var checkThisText = submittedText.value;
     submittedText.value = '';
+    if (whatRoomWeIn === 'pageload') {
+        if (decidedOnTutorial === false && checkText(checkThisText, "no")) {
+            $(".big-text").hide().html("Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>").fadeIn(800);
+            decidedOnTutorial = true;
+            whatRoomWeIn = "center";
+        } else if (decidedOnTutorial === false && checkText(checkThisText, "yes")) {
+            $(".big-text").hide().html("Welcome to name pending. This is a text based adventure game. This means that you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing controller to get in your way. I accidentally dropped you outside the tutorial so I need you to work with me. Down below is a list of things you are currently able to accomplish. All you can do right now is <em>look</em>. Go ahead and try that out.").fadeIn(800);
+            decidedOnTutorial = true;
+            whatRoomWeIn = "start";
+        } else {
+            $(".big-text").hide().html("You probably need the tutorial. Type 'yes' and press enter.").fadeIn(800);
+        }
+    }
 
-    if (whatRoomWeIn === 'start') { //START OF THE GAME,
+    else if (whatRoomWeIn === 'start') { //START OF THE GAME,
 
         if (checkText(checkThisText, 'look') && firstCommand === false) {
 

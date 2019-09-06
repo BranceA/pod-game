@@ -154,6 +154,7 @@ function checkKeyWords() {
             $(".big-text").hide().html("Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>").fadeIn(800);
             decidedOnTutorial = true;
             whatRoomWeIn = "center";
+            skipToCenter();
         } else if (decidedOnTutorial === false && checkText(checkThisText, "yes")) {
             $(".big-text").hide().html("Welcome to name pending. This is a text based adventure game. This means that you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing controller to get in your way. I accidentally dropped you outside the tutorial so I need you to work with me. Down below is a list of things you are currently able to accomplish. All you can do right now is <em>look</em>. Go ahead and try that out.").fadeIn(800);
             decidedOnTutorial = true;
@@ -381,10 +382,6 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("Mahogany").fadeIn(800);
 
-        } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'east') || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
-
-            $(".big-text").hide().html("That's a direction. I've had to delete five different responses because I don't know how to deal to this.").fadeIn(800);
-
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "unseen") {
 
             $(".big-text").hide().html("You mosey on over to the door to the <em>west</em>. The door is unlocked so you open it up. In the next room you see a monstrosity. There is a hulking creature on the far side of the room. You have heard tales of the <em>Dire Moose</em> but you didn't think they were real. You feel true terror as the <em>Dire Moose</em>'s solid black eyes meet your own. The <em>Dire Moose</em> unleashes a roar that makes you realize how truly insignificant you are. It charges towards you at a speed that should be impossible for a creature it's size. You close the door.").fadeIn(800);
@@ -463,7 +460,13 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("You walk until you get to the edge of what is probably a blast radius.").fadeIn(800);
 
-        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'east') && babelFish === false) {
+
+            $(".big-text").hide().html("ouyay idn\'tday evenyay inkthay otay akemay ouryay edbay ethay astlay imetay ouyay ereway erehay . ouryay othermay ouldway ebay isappointedday . onestlyhay , atwhay indkay ofyay obslay areyay ouyay ? obviouslyyay oppyslay enoughyay otay etgay aughtcay ybay ethay evilyay izardway esleylay . ohyay andyay ooklay , ouryay anketblay isyay emblazonedyay ithway ayay eirdway urplepay inosaurday . anywaysyay , <em>look</em> ackbay atyay ethay oomray osay eway ancay ontinuecay isthay igpay atinlay artypay estfay .").fadeIn(800);
+
+            whatRoomWeIn = 'ryan';
+
+        }else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
             $(".big-text").hide().html("You gingerly lift the <em>staff</em> off of the ground. Huh. This feels a lot like holding your old fishing pole.").fadeIn(800);
 
@@ -501,10 +504,13 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("You use it to the best of your ability but nothing happens.").fadeIn(800);
 
+        } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
+
+            $(".big-text").hide().html("That's a direction. I've had to delete five different responses because I don't know how to deal to this.").fadeIn(800);
+
         }
     } else if(whatRoomWeIn === 'ryan') {
 
-        var babelFish = false;
 
         if (checkText(checkThisText, 'look') && checkText(checkThisText, 'bed')) {
 
@@ -522,7 +528,7 @@ function checkKeyWords() {
 
             //"The aquarium in relation to your room is in pristine condition. Actually, this is a finely crafted dwarven aquarium, forged in the depths of their native mountains. You know what? Isn't it kind of weird that mountain dwelling humanoids would be concerned with ocean and river dwelling beast? Odd creatures those dwarves. Sorry, I was babbling there. Now <em>use</em> that <em>fishing pole</em> and see what we can get it."
 
-        } else if(checkText(checkThisText, 'use') && checkText(checkThisText, 'fishingPole') && ) {
+        } else if(checkText(checkThisText, 'use') && checkText(checkThisText, 'fishingPole') && babelFish === false) {
 
             $('.big-text').html('ouyay owerlay ethay ookhay intoyay ethay aterway andyay instantlyyay eelfay ayay ugtay , ouyay overyay eagerlyyay ankyay ethay inelay outyay ofyay ethay aterway andyay ayay allsmay <em>babelfish</em> andslay inyay ouryay ocketpay . isn\'tyay atthay onvenientcay .');
 

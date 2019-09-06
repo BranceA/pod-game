@@ -20,6 +20,7 @@ var staffStatus = "ground";
 var fishingPoleStatus = "none";
 var eastKeyStatus = "under";
 var decidedOnTutorial = false;
+var babelFish = false;
 
 window.onload = document.getElementById('text-input').select();
 
@@ -172,6 +173,7 @@ function checkKeyWords() {
                 "idea of what is going on, you should <em>stand up</em>").fadeIn(800);
             decidedOnTutorial = true;
             whatRoomWeIn = "center";
+            skipToCenter();
         } else if (decidedOnTutorial === false && checkText(checkThisText, "yes")) {
             $(".big-text").hide().html("Welcome to name pending. This is a text based adventure game. This means that " +
                 "you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing " +
@@ -485,21 +487,6 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("Mahogany").fadeIn(800);
 
-        } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
-
-            $(".big-text").hide().html("That's a direction. I've had to delete five different responses because I don't " +
-                "know how to deal to this.").fadeIn(800);
-
-        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'east') && eastKeyStatus === "under") {
-
-            $(".big-text").hide().html("This wooden door appears to be locked. There must be a key somewhere in this " +
-                "dungeon.").fadeIn(800);
-
-        } else if (checkText(checkThisText, 'fish') && checkText(checkThisText, 'circle') && fishingPoleStatus === "none") {
-
-            $(".big-text").hide().html("What? Are you mad? Being underground for so long absolutely has messed with your " +
-                "head. How could this even be possible? Sounds like magic of some sort.").fadeIn(800);
-
         } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'west') && mooseStatus === "unseen") {
 
             $(".big-text").hide().html("You mosey on over to the door to the <em>west</em>. The door is unlocked so you " +
@@ -594,7 +581,13 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("You walk until you get to the edge of what is probably a blast radius.").fadeIn(800);
 
-        } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
+        } else if (checkText(checkThisText, 'go') && checkText(checkThisText, 'east') && babelFish === false) {
+
+            $(".big-text").hide().html("ouyay idn\'tday evenyay inkthay otay akemay ouryay edbay ethay astlay imetay ouyay ereway erehay . ouryay othermay ouldway ebay isappointedday . onestlyhay , atwhay indkay ofyay obslay areyay ouyay ? obviouslyyay oppyslay enoughyay otay etgay aughtcay ybay ethay evilyay izardway esleylay . ohyay andyay ooklay , ouryay anketblay isyay emblazonedyay ithway ayay eirdway urplepay inosaurday . anywaysyay , <em>look</em> ackbay atyay ethay oomray osay eway ancay ontinuecay isthay igpay atinlay artypay estfay .").fadeIn(800);
+
+            whatRoomWeIn = 'ryan';
+
+        }else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'staff') && staffStatus === "ground") {
 
             $(".big-text").hide().html("You gingerly lift the <em>staff</em> off of the ground. Huh. This feels a lot " +
                 "like holding your old fishing pole. You know, the one you never used when your father never took you " +
@@ -644,20 +637,81 @@ function checkKeyWords() {
 
             $(".big-text").hide().html("You use it to the best of your ability but nothing happens.").fadeIn(800);
 
-        } else if (checkText(checkThisText, 'fish') && checkText(checkThisText, 'circle') && fishingPoleStatus === "combined") {
-            $(".big-text").hide().html("What do you know, it was a magical pole all along, who would've thought. Out of " +
-                "the floor comes a key, but it's covered in some sort of red gooey substance. Thanks dad.").fadeIn(800);
-            eastKeyStatus = "gotten";
-            removeItemAndCommand("Fishing Pole", "Fish");
-            addNewItem("Red Gooey Key");
-        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'east') && inventory.includes('Red Gooey Key')) {
+        } else if ((checkText(checkThisText, 'get') || checkText(checkThisText, 'use')) && (checkText(checkThisText, 'west')) || checkText(checkThisText, 'north') || checkText(checkThisText, 'south')) {
 
-            $(".big-text").hide().html("You fiddle with the lock a little bit. After a few minutes of fiddling and swearing " +
-                "to yourself, you hear a click. The giant door slowly swings open followed by a loud creaking sound. You " +
-                "enter the very dimly lit room, change to start things feel but. ").fadeIn(800);
+            $(".big-text").hide().html("That's a direction. I've had to delete five different responses because I don't know how to deal to this.").fadeIn(800);
+
         }
-    }
+    } else if(whatRoomWeIn === 'ryan') {
 
 
+        if (checkText(checkThisText, 'look') && checkText(checkThisText, 'bed')) {
+
+            $('.big-text').hide().html('ouyay idn\'tday evenyay inkthay otay akemay ouryay edbay ethay astlay imetay ouyay ereway erehay . ouryay othermay ouldway ebay isappointedday . onestlyhay , atwhay indkay ofyay obslay areyay ouyay ? obviouslyyay oppyslay enoughyay otay etgay aughtcay ybay ethay evilyay izardway esleylay . ohyay andyay ooklay , ouryay anketblay isyay emblazonedyay ithway ayay eirdway urplepay inosaurday . anywaysyay , <em>look</em> ackbay atyay ethay oomray osay eway ancay ontinuecay isthay igpay atinlay artypay estfay .').fadeIn(800);
+
+            //Translated Text:
+
+            //"You didn't even think to make your bed the last time you were here. Your mother would be disappointed. Honestly, what kind of slob are you? Obviously sloppy enough to get caught by the evil wizard Lesley. Oh and look, your blanket is emblazoned with a weird purple dinosaur. Anyways, <em>look</em> back at the room so we can continue this pig latin party fest."
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'aquarium')) {
+
+            $('.big-text').hide().html('ethay aquariumyay inyay elationray otay ouryay oomray isyay inyay istinepray onditioncay . actuallyyay , isthay isyay ayay inelyfay aftedcray arvendway aquariumyay , orgedfay inyay ethay epthsday ofyay eirthay ativenay ountainsmay . ouyay owknay atwhay ? isn\'tyay ityay indkay ofyay eirdway atthay ountainmay ellingdway umanoidshay ouldway ebay oncernedcay ithway oceanyay andyay iverray ellingdway eastbay ? oddyay eaturescray osethay arvesdway . orrysay , iyay asway abblingbay erethay . ownay <em>use</em> atthay <em>fishing pole</em> andyay eesay atwhay eway ancay etgay ityay .').fadeIn(800);
+
+            //Translated Text:
+
+            //"The aquarium in relation to your room is in pristine condition. Actually, this is a finely crafted dwarven aquarium, forged in the depths of their native mountains. You know what? Isn't it kind of weird that mountain dwelling humanoids would be concerned with ocean and river dwelling beast? Odd creatures those dwarves. Sorry, I was babbling there. Now <em>use</em> that <em>fishing pole</em> and see what we can get it."
+
+        } else if(checkText(checkThisText, 'use') && checkText(checkThisText, 'fishing pole') && babelFish === false) {
+
+            $('.big-text').hide().html('ouyay owerlay ethay ookhay intoyay ethay aterway andyay instantlyyay eelfay ayay ugtay , ouyay overyay eagerlyyay ankyay ethay inelay outyay ofyay ethay aterway andyay ayay allsmay <em>babelfish</em> andslay inyay ouryay ocketpay . isn\'tyay atthay onvenientcay .').fadeIn(800);
+
+            addNewItem("Babel Fish");
+
+            babelFish = true;
+
+            //Translate Text:
+
+            //"You lower the hook into the water and instantly feel a tug, you over eagerly yank the line out of the water and a small <em>babelfish</em> lands in your pocket. Isn't that convenient."
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'babelfish') && inventory.includes('Babel Fish')) {
+
+            $('.big-text').hide().html('Alright you weirdo, you decide to put the fish in your ear and all of a sudden everything is clearer and you understand everything. Looks like you could explore the room or just leave out the door. And yes, it was open the whole time. Jokes on you.').fadeIn(800);
+
+        } else if (checkText(checkThisText, 'look')) {
+
+            $('.big-text').hide().html('ellway , isthay asway unexpectedyay . ityay appearsyay atthay ethay arkday izardway eslielay ashay ecreatedray ouryay ildhoodchay edroombay . atthay isyay uiteqay oddyay . omeonesay eedsnay otay alktay otay isthay uygay , iyay eanmay it\'syay adbay enoughyay atthay ehay idnapskay adventurersyay ikelay ourselfyay . inyay ethay ornercay isyay ouryay oldyay <em>bed</em> . ohyay ooklay , ethay illowpay isyay illstay etway omfray ouryay earstay ouyay igbay abybay . iyay an\'tcay elievebay iyay otgay uckstay arratingnay ethay orystay ofyay anyay adultyay abybay . ustjay ymay ucklay . anywaysyay , iyay asway abblingbay . andyay inyay ethay iddlemay ofyay ouryay oomray itssay anyay <em>aquarium</em> . iyay etbay at\'sthay erewhay ouyay orestay ouryay igbay abybay earstay . atyay isthay ointpay ityay ightmay ebay ayay oodgay ideayay otay <em>look</em> atyay omethingsay . ancay ouyay andlehay atthay ouyay igbay abybay ?').fadeIn(800);
+
+            //Translated Text:
+
+            //"Well, this was unexpected. It appears that the dark wizard Leslie has recreated your childhood bedroom. That is quite odd. Someone needs to talk to this guy, I mean it's bad enough that he kidnaps adventurers like yourself. In the corner is your old <em>bed</em>. Oh look, the pillow is still wet from your tears you big baby. I can't believe I got stuck narrating the story of an adult baby. Just my luck. Anyways, I was babbling. And in the middle of your room sits an <em>aquarium</em>. I bet that's where you store your big baby tears. At this point it might be a good idea to <em>look</em> at something. Can you handle that you big baby?"
+
+
+        }
+
+        //        Translate Ryan Room
+
+
+        if (checkText(checkThisText, 'look') && checkText(checkThisText, 'bed') && babelFish === true) {
+
+            $('.big-text').hide().html('You didn\'t even think to make your bed the last time you were here. Your mother would be disappointed. Honestly, what kind of slob are you? Obviously sloppy enough to get caught by the evil wizard Lesley. Oh and look, your blanket is emblazoned with a weird purple dinosaur. Anyways, <em>look</em> back at the room so we can continue this pig latin party fest.').fadeIn(800);
+
+        } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'aquarium') && babelFish === true ) {
+            console.log('hey there');
+            $('.big-text').hide().html('The aquarium in relation to your room is in pristine condition. Actually, this is a finely crafted dwarven aquarium, forged in the depths of their native mountains. You know what? Isn\'t it kind of weird that mountain dwelling humanoids would be concerned with ocean and river dwelling beast? Odd creatures those dwarves. Sorry, I was babbling there. Now <em>use</em> that <em>fishing pole</em> and see what we can get it.').fadeIn(800);
+
+        } else if(checkText(checkThisText, 'use') && checkText(checkThisText, 'fishingPole') && babelFish === true) {
+
+            $('.big-text').hide().html('You lower the hook into the water and instantly feel a tug, you over eagerly yank the line out of the water and a small <em>babelfish</em> lands in your pocket. Isn\'t that convenient.').fadeIn(800);
+
+        } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'babelfish') && inventory.includes('babelfish')) {
+
+            $('.big-text').hide().html('Alright you weirdo, you decide to put the fish in your ear and all of a sudden everything is clearer and you understand everything. Looks like you could explore the room or just leave out the door. And yes, it was open the whole time. Jokes on you.').fadeIn(800);
+
+        } else if (checkText(checkThisText, 'look') && babelFish === true) {
+
+            $('.big-text').hide().html('Well, this was unexpected. It appears that the dark wizard Leslie has recreated your childhood bedroom. That is quite odd. Someone needs to talk to this guy, I mean it\'s bad enough that he kidnaps adventurers like yourself. In the corner is your old <em>bed</em>. Oh look, the pillow is still wet from your tears you big baby. I can\'t believe I got stuck narrating the story of an adult baby. Just my luck. Anyways, I was babbling. And in the middle of your room sits an <em>aquarium</em>. I bet that\'s where you store your big baby tears. At this point it might be a good idea to <em>look</em> at something. Can you handle that you big baby?').fadeIn(800);
+
+        }
+
+    } //if else Ryan's room
 
 }

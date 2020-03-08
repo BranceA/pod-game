@@ -23,7 +23,9 @@ var decidedOnTutorial = false;
 var babelFish = false;
 
 let roomIndex = 0;
-let actions = new Map()
+// Need array not containing html elements
+// Index points need to line up with where they fall on big array
+let actions = []
 
 
 
@@ -61,7 +63,7 @@ function findKeyWords(){
     const actors = textOptions[roomIndex][0]
     const checkThisText = submittedText.value;
     let actorIndex = null;
-    let actionIndex;
+    let actionIndex = null;
     
     for(let actor of actors){
         if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
@@ -69,16 +71,22 @@ function findKeyWords(){
         }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
             actorIndex = actors.findIndex(actor);
         }
-
-        if(actorIndex === null){
-            // Use default actions
-            // Actor index will only be null if no actor was found in the player's text
-            actorIndex = 1;
-        }
-
-        // This each index point of the array will have a function that returns a block of text
-        textOptions[roomIndex][actorIndex][actionIndex]()
     }
 
+    if(actorIndex === null){
+        // Use default actions
+        // Actor index will only be null if no actor was found in the player's text
+        actorIndex = 1;
+    }
 
+    for(let action of actions){
+        if(checkThisText.indexOf(action) !== -1 && actionIndex === null){
+            //return block of text to tell player to calm down and pick one thing
+        }else if(checkThisText.indexOf(action) !== -1 && actionIndex !== null){
+            actionIndex = actions.findIndex(action);
+        }
+    }
+
+    // This each index point of the array will have a function that returns a block of text
+    textOptions[roomIndex][actorIndex][actionIndex]()
 }

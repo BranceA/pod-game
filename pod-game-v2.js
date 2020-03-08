@@ -51,6 +51,7 @@ const textOptions = []
 
 // Second index point is what actor the player is interacting with.
 // index point 0 will have a list of actors and will be referenced by the function looking for keywords
+// index point 1 will have default actions if the player did not include an actor in the submitted text
 
 // Third index point is the action that the player is taking.
 // Constants are 0: look 1: go 2: get 3: use
@@ -59,8 +60,25 @@ const textOptions = []
 function findKeyWords(){
     const actors = textOptions[roomIndex][0]
     const checkThisText = submittedText.value;
+    let actorIndex = null;
+    let actionIndex;
     
+    for(let actor of actors){
+        if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
+            //return block of text to tell player to calm down and pick one thing
+        }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
+            actorIndex = actors.findIndex(actor);
+        }
 
+        if(actorIndex === null){
+            // Use default actions
+            // Actor index will only be null if no actor was found in the player's text
+            actorIndex = 1;
+        }
+
+        // This each index point of the array will have a function that returns a block of text
+        textOptions[roomIndex][actorIndex][actionIndex]()
+    }
 
 
 }

@@ -69,8 +69,8 @@ function findKeyWords(){
         if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
             //return block of text to tell player to calm down and pick one thing
         }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
-            // +1 because 0 index is is the array of actors
-            actorIndex = actors.findIndex(actor) + 1;
+            // +1 because 0 index is is the array of actors and 1 index is default actions
+            actorIndex = actors.findIndex(actor) + 2;
         }
     }
 

@@ -49,7 +49,7 @@ submittedText.addEventListener("keyup", function(event) {
 // 0: Outside tutorial
 // 1: Inside tutorial
 // 2: Center
-const textOptions = []
+const textOptions = [outsideTutorial]
 
 // Second index point is what actor the player is interacting with.
 // index point 0 will have a list of actors and will be referenced by the function looking for keywords
@@ -69,7 +69,8 @@ function findKeyWords(){
         if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
             //return block of text to tell player to calm down and pick one thing
         }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
-            actorIndex = actors.findIndex(actor);
+            // +1 because 0 index is is the array of actors
+            actorIndex = actors.findIndex(actor) + 1;
         }
     }
 
@@ -90,3 +91,42 @@ function findKeyWords(){
     // This each index point of the array will have a function that returns a block of text
     textOptions[roomIndex][actorIndex][actionIndex]()
 }
+
+// Outside tutorial does not have much
+const outsideTutorial = [
+    // Door and north are the only actors while outside tutorial
+    ["door", "north"],
+    // Index 1 is default actions. Look and go are the only actions ever available so there are only 2 index points
+    [
+        function(){
+            if(firstCommand === false){
+                firstCommand = true;
+                return "Welcome to name pending. This is a text based adventure game. This means that you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing controller to get in your way. I accidentally dropped you outside the tutorial so I need you to work with me. Down below is a list of things you are currently able to accomplish. All you can do right now is <em>look</em>. Go ahead and try that out."
+            } else {
+                return "When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>."
+            }
+        },
+        function(){
+            return "Good luck going there."
+        }
+    ],
+    // For the door
+    [
+        function(){
+            return "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>."
+        },
+        function(){
+            return "You go up to the <em>door</em> in preparation to go <em>north</em>"
+        }
+    ],
+    // For north
+    [
+        function(){
+            return "You look <em>north</em> and see a <em>door</em>. You should <em>go north</em>"
+        },
+        function(){
+            roomIndex = 1;
+            return "go north text";
+        }
+    ]
+]

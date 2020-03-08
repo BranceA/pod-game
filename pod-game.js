@@ -65,6 +65,7 @@ function addNewCommand(newAction) {
     if (availableActions.includes(newAction) === true) {
         return "oops";
     } else {
+        // Add code to update new actions array without html elements
         availableActions.pop();
         availableActions.push('<li>');
         availableActions.push(newAction);

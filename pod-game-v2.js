@@ -25,7 +25,7 @@ var babelFish = false;
 let roomIndex = 0;
 // Need array not containing html elements
 // Index points need to line up with where they fall on big array
-let actions = []
+let actions = ["look"]
 
 
 
@@ -192,9 +192,9 @@ function findKeyWords(){
     let displayText = "";
     
     for(let actor of actors){
-        if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
+        if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
             tooManyCommands = true;
-        }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
+        }else if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
             // +1 because 0 index is is the array of actors and 1 index is default actions
             actorIndex = actors.findIndex(actor) + 2;
         }
@@ -207,10 +207,10 @@ function findKeyWords(){
     }
 
     for(let action of actions){
-        if(checkThisText.indexOf(action) !== -1 && actionIndex === null){
+        if(checkThisText.indexOf(action) !== -1 && actionIndex !== null){
             tooManyCommands = true;
-        }else if(checkThisText.indexOf(action) !== -1 && actionIndex !== null){
-            actionIndex = actions.findIndex(action);
+        }else if(checkThisText.indexOf(action) !== -1 && actionIndex === null){
+            actionIndex = actions.indexOf(action);
         }
     }
 

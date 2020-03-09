@@ -122,9 +122,12 @@ function removeOneItem(itemName) {
 
 // If player doesn't choose to play tutorial this catches the game up to where it should be
 function skipToCenter() {
+    addNewCommand("Go");
     addNewCommand("Get");
     addNewCommand("Use");
-    addNewCommand("Go");
+    actions[1] = "Go"
+    actions[2] = "Get"
+    actions[3] = "Use"
 }
 
 // This is a shenanigan. Don't worry about it.
@@ -184,7 +187,7 @@ function findKeyWords(){
     }else{
 
     const actors = textOptions[roomIndex][0]
-    const checkThisText = submittedText.value;
+    const checkThisText = submittedText.value.toLowerCase();
     submittedText.value = "";
     let actorIndex = null;
     let actionIndex = null;
@@ -225,7 +228,7 @@ function findKeyWords(){
 }
 
 function dealWithTutorial(){
-    const checkThisText = submittedText.value;
+    const checkThisText = submittedText.value.toLowerCase();
     let displayText = "";
     submittedText.value = "";
     if(checkThisText.toLowerCase().indexOf("yes") !== -1){

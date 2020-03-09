@@ -31,7 +31,6 @@ let actions = []
 
 
 window.onload = document.getElementById('text-input').select();
-actions.set("look", 0)
 
 commandsFooter.innerHTML = availableActions.join(" ");
 
@@ -49,7 +48,6 @@ submittedText.addEventListener("keyup", function(event) {
 // 0: Outside tutorial
 // 1: Inside tutorial
 // 2: Center
-const textOptions = [outsideTutorial]
 
 // Second index point is what actor the player is interacting with.
 // index point 0 will have a list of actors and will be referenced by the function looking for keywords
@@ -89,7 +87,7 @@ function findKeyWords(){
     }
 
     // This each index point of the array will have a function that returns a block of text
-    textOptions[roomIndex][actorIndex][actionIndex]()
+    textOptions[roomIndex][actorIndex][actionIndex]();
 }
 
 // Outside tutorial does not have much
@@ -130,3 +128,6 @@ const outsideTutorial = [
         }
     ]
 ]
+
+// Separating some of the 3d array for organization
+const textOptions = [outsideTutorial]

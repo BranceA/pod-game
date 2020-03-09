@@ -140,8 +140,7 @@ function itemCombine(itemOne, itemTwo, combinedItem) {
     removeOneItem(itemOne);
     removeOneItem(itemTwo);
     addNewItem(combinedItem);
-    $(".big-text").hide().html("You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into "
-        + combinedItem).fadeIn(800);
+    $(".big-text").hide().html("You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into " + combinedItem).fadeIn(800);
     submitButton.disabled = false;
     submittedText.value = '';
 }
@@ -180,8 +179,13 @@ function pigLatinify(text){
 // New function to check the players text for keywords
 // Instead of stopping as soon as it finds two keywords it checks if there are too many so there is no confusion as to which action the player is taking
 function findKeyWords(){
+    if(!decidedOnTutorial){
+        dealWithTutorial();
+    }else{
+
     const actors = textOptions[roomIndex][0]
     const checkThisText = submittedText.value;
+    submittedText.value = "";
     let actorIndex = null;
     let actionIndex = null;
     let tooManyCommands = false;
@@ -218,6 +222,26 @@ function findKeyWords(){
     }
 
     $(".big-text").hide().html(displayText).fadeIn(800);
+}
+
+function dealWithTutorial(){
+    const checkThisText = submittedText.value;
+    let displayText = "";
+    submittedText.value = "";
+    if(checkThisText.toLowerCase().indexOf("yes") !== -1){
+        decidedOnTutorial = true;
+        roomIndex = 0;
+        displayText = textOptions[0][1][0]();
+    }else if(checkThisText.toLowerCase().indexOf("no") !== -1){
+        decidedOnTutorial = true;
+        skipToCenter();
+        roomIndex = 2;
+        displayText = "Doesn't work yet"
+    }else{
+        displayText = "It's a yes or no question. Do you want to play a tutorial. It's starting to seem like you should."
+    }
+    $(".big-text").hide().html(displayText).fadeIn(800);
+}
 }
 
 // Outside tutorial does not have much

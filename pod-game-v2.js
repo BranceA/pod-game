@@ -44,6 +44,104 @@ submittedText.addEventListener("keyup", function(event) {
     }
 });
 
+// This let's you add items. Pass the arguments as strings and it will add to the inventory and the list of available
+// actions. It incorporates the strings well enough to make them keywords.
+
+function youGotAnItem(itemName, itemAction) {
+    if (inventory.includes(itemName) === true) {
+        $(".big-text").hide().html('You already have that.').fadeIn(800);
+    } else {
+        availableActions.pop();
+        availableActions.push('<li>');
+        availableActions.push(itemAction);
+        availableActions.push('</li>');
+        availableActions.push('</ul>');
+        commandsFooter.innerHTML = availableActions.join(" ");
+        inventory.pop();
+        inventory.push('<li>');
+        inventory.push(itemName);
+        inventory.push('</li>');
+        inventory.push('</ul>');
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
+}
+
+// This let's you add to the action list without adding an item. I was using it for the tutorial but not sure if it's
+// going to be used much now.
+
+function addNewCommand(newAction) {
+    if (availableActions.includes(newAction) === true) {
+        return "oops";
+    } else {
+        // Add code to update new actions array without html elements
+        availableActions.pop();
+        availableActions.push('<li>');
+        availableActions.push(newAction);
+        availableActions.push('</li>');
+        availableActions.push('</ul>');
+        commandsFooter.innerHTML = availableActions.join(" ");
+    }
+}
+
+// This takes away the item from the inventory and the action that came with it. Pass the arguments as strings and make
+// sure they are spelled correctly and capitalized correctly. If you do that then it just works.
+
+function removeItemAndCommand(itemName, itemAction) {
+    var itemPosition = inventory.indexOf(itemName) - 1;
+    var actionPosition = availableActions.indexOf(itemAction) - 1;
+    if (inventory.includes(itemName)) {
+        inventory.splice(itemPosition, 3);
+        inventoryAside.innerHTML = inventory.join(" ");
+        availableActions.splice(actionPosition, 3);
+        commandsFooter.innerHTML = availableActions.join(" ");
+    }
+}
+
+// This allows you to add a new Item without an action.
+
+function addNewItem(newItem) {
+    if (inventory.includes(newItem) === true) {
+        return "oops";
+    } else {
+        inventory.pop();
+        inventory.push('<li>');
+        inventory.push(newItem);
+        inventory.push('</li>');
+        inventory.push('</ul>');
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
+}
+
+function removeOneItem(itemName) {
+    var itemPosition = inventory.indexOf(itemName) - 1;
+    if (inventory.includes(itemName)) {
+        inventory.splice(itemPosition, 3);
+        inventoryAside.innerHTML = inventory.join(" ");
+    }
+}
+
+function skipToCenter() {
+    addNewCommand("Get");
+    addNewCommand("Use");
+    addNewCommand("Go");
+}
+
+// This is a shenanigan. Don't worry about it.
+
+function gameOver() {
+    $(".big-text").hide().html("<h1>GAME OVER</h1>").fadeIn(800);
+}
+
+function itemCombine(itemOne, itemTwo, combinedItem) {
+    removeOneItem(itemOne);
+    removeOneItem(itemTwo);
+    addNewItem(combinedItem);
+    $(".big-text").hide().html("You fiddle around for a while and you combine " + itemOne + " and " + itemTwo + " into "
+        + combinedItem).fadeIn(800);
+    submitButton.disabled = false;
+    submittedText.value = '';
+}
+
 // First index point is what room we are in
 // 0: Outside tutorial
 // 1: Inside tutorial

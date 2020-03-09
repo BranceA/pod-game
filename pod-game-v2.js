@@ -51,6 +51,7 @@ function youGotAnItem(itemName, itemAction) {
     if (inventory.includes(itemName) === true) {
         $(".big-text").hide().html('You already have that.').fadeIn(800);
     } else {
+        // This may need refactor later with new setup.
         availableActions.pop();
         availableActions.push('<li>');
         availableActions.push(itemAction);
@@ -125,9 +126,9 @@ function skipToCenter() {
     addNewCommand("Go");
     addNewCommand("Get");
     addNewCommand("Use");
-    actions[1] = "Go"
-    actions[2] = "Get"
-    actions[3] = "Use"
+    actions[1] = "go"
+    actions[2] = "get"
+    actions[3] = "use"
 }
 
 // This is a shenanigan. Don't worry about it.
@@ -199,7 +200,7 @@ function findKeyWords(){
             tooManyCommands = true;
         }else if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
             // +1 because 0 index is is the array of actors and 1 index is default actions
-            actorIndex = actors.findIndex(actor) + 2;
+            actorIndex = actors.indexOf(actor) + 2;
         }
     }
 
@@ -268,6 +269,8 @@ const outsideTutorial = [
     // For the door
     [
         function(){
+            actions[1] = "go";
+            addNewCommand("Go");
             return "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>."
         },
         function(){

@@ -98,7 +98,6 @@ function removeItemAndCommand(itemName, itemAction) {
 }
 
 // This allows you to add a new Item without an action.
-
 function addNewItem(newItem) {
     if (inventory.includes(newItem) === true) {
         return "oops";
@@ -112,6 +111,7 @@ function addNewItem(newItem) {
     }
 }
 
+// Removes an item and nothing else
 function removeOneItem(itemName) {
     var itemPosition = inventory.indexOf(itemName) - 1;
     if (inventory.includes(itemName)) {
@@ -120,6 +120,7 @@ function removeOneItem(itemName) {
     }
 }
 
+// If player doesn't choose to play tutorial this catches the game up to where it should be
 function skipToCenter() {
     addNewCommand("Get");
     addNewCommand("Use");
@@ -132,6 +133,9 @@ function gameOver() {
     $(".big-text").hide().html("<h1>GAME OVER</h1>").fadeIn(800);
 }
 
+// First two arguments are the names of the items being combined and are removed from the inventory
+// Third argument is the name of the combined item
+// Does not add action with new combined item
 function itemCombine(itemOne, itemTwo, combinedItem) {
     removeOneItem(itemOne);
     removeOneItem(itemTwo);
@@ -140,6 +144,25 @@ function itemCombine(itemOne, itemTwo, combinedItem) {
         + combinedItem).fadeIn(800);
     submitButton.disabled = false;
     submittedText.value = '';
+}
+
+// Function converts text to pig latin
+function pigLatinify(text){
+    var splitText = text.split(" ");
+
+    splitText.forEach(function(word, i) {
+        if(word.length === 1){
+            splitText[i] = word + "ay"
+        }else if(word.substring(0, 1) === "<"){
+            
+        }else if(word.charAt(word.length - 1) === "."){
+            splitText[i] = word.substring(1, word.length - 1) + word.substring(0, 1) + "ay."
+        }else{
+            splitText[i] = word.substring(1) + word.substring(0, 1) + "ay"
+        }
+    });
+
+    return splitText.join(" ");
 }
 
 // First index point is what room we are in
@@ -154,7 +177,8 @@ function itemCombine(itemOne, itemTwo, combinedItem) {
 // Third index point is the action that the player is taking.
 // Constants are 0: look 1: go 2: get 3: use
 
-
+// New function to check the players text for keywords
+// Instead of stopping as soon as it finds two keywords it checks if there are too many so there is no confusion as to which action the player is taking
 function findKeyWords(){
     const actors = textOptions[roomIndex][0]
     const checkThisText = submittedText.value;
@@ -227,5 +251,6 @@ const outsideTutorial = [
     ]
 ]
 
+// All blocks of text are being stored in this array to eliminate the need to write most of the current conditions
 // Separating some of the 3d array for organization
 const textOptions = [outsideTutorial]

@@ -36,7 +36,7 @@ commandsFooter.innerHTML = availableActions.join(" ");
 
 // Event listener on textbox fires when player presses enter and calls function to find keywords
 
-submitButton.addEventListener('click', checkKeyWords);
+submitButton.addEventListener('click', findKeyWords);
 submittedText.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
@@ -184,10 +184,12 @@ function findKeyWords(){
     const checkThisText = submittedText.value;
     let actorIndex = null;
     let actionIndex = null;
+    let tooManyCommands = false;
+    let displayText = "";
     
     for(let actor of actors){
         if(checkThisText.indexOf(actor) !== -1 && actorIndex === null){
-            //return block of text to tell player to calm down and pick one thing
+            tooManyCommands = true;
         }else if(checkThisText.indexOf(actor) !== -1 && actorIndex !== null){
             // +1 because 0 index is is the array of actors and 1 index is default actions
             actorIndex = actors.findIndex(actor) + 2;
@@ -202,14 +204,20 @@ function findKeyWords(){
 
     for(let action of actions){
         if(checkThisText.indexOf(action) !== -1 && actionIndex === null){
-            //return block of text to tell player to calm down and pick one thing
+            tooManyCommands = true;
         }else if(checkThisText.indexOf(action) !== -1 && actionIndex !== null){
             actionIndex = actions.findIndex(action);
         }
     }
 
     // This each index point of the array will have a function that returns a block of text
-    textOptions[roomIndex][actorIndex][actionIndex]();
+    if(tooManyCommands){
+        displayText = "Calm down and do one thing at a time. Pick one thing to interact with and one thing to do."
+    }else{
+        displayText = textOptions[roomIndex][actorIndex][actionIndex]();
+    }
+
+    $(".big-text").hide().html(displayText).fadeIn(800);
 }
 
 // Outside tutorial does not have much

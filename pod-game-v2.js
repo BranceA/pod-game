@@ -222,6 +222,9 @@ function findKeyWords(){
     if(tooManyCommands){
         displayText = "Calm down and do one thing at a time. Pick one thing to interact with and one thing to do."
     }else{
+        console.log(roomIndex)
+        console.log(actorIndex)
+        console.log(actionIndex)
         displayText = textOptions[roomIndex][actorIndex][actionIndex]();
     }
 
@@ -284,8 +287,17 @@ const outsideTutorial = [
         },
         function(){
             roomIndex = 1;
-            return "go north text";
+            actions[2] = "get"
+            addNewCommand("Get");
+            return "So far so good. You are now in the tutorial proper. You hear the door behind you lock and shortly after you hear the room you came from cave in, become radioactive and fade from reality. You weren't supposed to be there anyway. This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.";
         }
+    ]
+]
+
+const insideTutorial = [
+    ["button", "door", "glass", "hammer"],
+    [
+        
     ]
 ]
 

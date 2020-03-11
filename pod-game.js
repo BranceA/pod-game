@@ -389,7 +389,7 @@ function checkKeyWords() {
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && didHammerGetGot === true && isGlassSmashed === true) {
 
             $(".big-text").hide().html("This room is identical to the one you came from except there is a <em>button</em> " +
-                "next to the <em>door</em>. There is shattered <em>glass</em> and I small <em>hammer</em> on the ground").fadeIn(800);
+                "next to the <em>door</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground").fadeIn(800);
 
         } else {
 

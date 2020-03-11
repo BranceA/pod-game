@@ -295,12 +295,29 @@ const outsideTutorial = [
 ]
 
 const insideTutorial = [
-    ["button", "door", "glass", "hammer"],
+    ["button", "door", "glass", "hammer", "north", "south"],
     [
-        
+        function(){
+            if(!isGlassSmashed && !didHammerGetGot){
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it."
+            }else if(isGlassSmashed && !didHammerGetGot){
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it."
+            }else if(isGlassSmashed && didHammerGetGot){
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground"
+            }
+        },
+        function(){
+            return "Good luck going there."
+        },
+        function(){
+            return "You try your best but you just don't get it."
+        },
+        function(){
+            return "The functionality of this is beyond you and you do not know how to use it."
+        }
     ]
 ]
 
 // All blocks of text are being stored in this array to eliminate the need to write most of the current conditions
 // Separating some of the 3d array for organization
-const textOptions = [outsideTutorial]
+const textOptions = [outsideTutorial, insideTutorial]

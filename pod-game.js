@@ -286,23 +286,23 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'smash') && checkText(checkThisText, 'door') && inventory.includes('Hammer')) {
 
-            $(".big-text").hide().html("Wow you are actually trying to break through this <em>door</em> with a " +
-                "<em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. " +
-                "If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>").fadeIn(800);
+            // $(".big-text").hide().html("Wow you are actually trying to break through this <em>door</em> with a " +
+            //     "<em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. " +
+            //     "If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>").fadeIn(800);
 
         } else if (checkText(checkThisText,'smash') !== -1 && checkThisText.toLowerCase().indexOf('glass') !== -1 && inventory.includes('Hammer') && isGlassSmashed === false) {
 
-            $(".big-text").hide().html("This <em>hammer</em> is really here just so you don't have to smash open this " +
-                "thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless " +
-                "at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. " +
-                "You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. " +
-                "Like... I dunno... maybe a <em>button</em>?").fadeIn(800);
+            // $(".big-text").hide().html("This <em>hammer</em> is really here just so you don't have to smash open this " +
+            //     "thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless " +
+            //     "at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. " +
+            //     "You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. " +
+            //     "Like... I dunno... maybe a <em>button</em>?").fadeIn(800);
 
-            isGlassSmashed = true;
+            // isGlassSmashed = true;
 
-            addNewCommand("Use");
+            // addNewCommand("Use");
 
-            removeItemAndCommand("Hammer", "Smash");
+            // removeItemAndCommand("Hammer", "Smash");
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === true) {
 
@@ -339,9 +339,9 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === false) {
 
-            $(".big-text").hide().html("You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. " +
-                "That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. " +
-                "I'm not going to keep babying you when we get to the real game.").fadeIn(800);
+            // $(".big-text").hide().html("You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. " +
+            //     "That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. " +
+            //     "I'm not going to keep babying you when we get to the real game.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === true) {
 

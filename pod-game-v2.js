@@ -298,11 +298,11 @@ const insideTutorial = [
     [
         function(){
             if(!isGlassSmashed && !didHammerGetGot){
-                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it."
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The <em>door</em> is still to the <em>north</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it."
             }else if(!isGlassSmashed && didHammerGetGot){
-                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it."
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The <em>door</em> is still to the <em>north</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it."
             }else if(isGlassSmashed && didHammerGetGot){
-                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground"
+                return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The <em>door</em> is still to the <em>north</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground"
             }
         },
         function(){return "Good luck going there."},
@@ -346,7 +346,7 @@ const insideTutorial = [
     [
         function(){
             if(!isGlassSmashed){
-                return "It's glass and it's preventing you from pressing the button. What else do you want?"
+                return "It's <em>glass</em> and it's preventing you from pressing the button. What else do you want?"
             }else if(isGlassSmashed){
                 return "You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history."
             }
@@ -360,7 +360,14 @@ const insideTutorial = [
             }
         },
         function(){return "You take the glass and use it as the final component of the MOST POWERFUL SPELL IN THE... oh wait no you don't. Even if you could get the <em>glass</em> you know no use for it."},
-        //Smash glass here
+        function(){
+            isGlassSmashed = true;
+            actions.pop()
+            actions[3] = "use"
+            addNewCommand("Use");
+            removeItemAndCommand("Hammer", "Smash");
+            return "This <em>hammer</em> is really here just so you don't have to smash open this thin sheet of <em>glass</em> with your hand. You drop the <em>hammer</em> because it's kinda useless at this point. The <em>button</em> is now exposed to fresh air and I'm giving you one last thing for now. You may now <em>use</em> things. <em>Use</em> will let you generally interact with interactable objects. Like... I dunno... maybe a <em>button</em>?"
+        }
     ],
     [
         function(){
@@ -387,6 +394,20 @@ const insideTutorial = [
         },
         function(){return "I see where the confusion is. You <em>use</em> things that are in the environment. You can <em>use</em> that <em>button</em> if the <em>glass</em> isn't in the way. The <em>hammer</em> is an item you have aquired and it lets you take the action <em>smash</em>."},
         function(){return "It's... simply not possible. I'm not sure what you were expecting. Did you think that a version of yourself was going to arrive from an alternate dimension with the exact same <em>hammer</em> and <em>smash</em> the one you're holding? Do you want to tear reality apart with a paradox? That's how that happens."}
+    ],
+    [
+        function(){return "You direct your gaze <em>north</em> and see a <em>door</em>."},
+        function(){
+            if(!tutorialButtonPushed){
+                return "You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game."
+            }else if(tutorialButtonPushed){
+                roomIndex = 2;
+                return "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>."
+            }
+        },
+        function(){return "Direction is more of a concept than a thing. I don't know what you are trying to get."},
+        function(){return "Direction is more of a concept than a thing. I don't know what you are trying to use."},
+        function(){return "You brandish your <em>hammer</em> menacingly towards that bastard, <em>north</em>. You swing as hard as you can over and over but your attacks have nothing to come in contact with. After hours of combat you pass out. When you awaken, everything is as it was before."}
     ]
 ]
 

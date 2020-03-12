@@ -270,19 +270,19 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
-            $(".big-text").hide().html("It isn't very big and it's just sorta hanging on the wall. There is a sign that " +
-                "says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>.").fadeIn(800);
+            // $(".big-text").hide().html("It isn't very big and it's just sorta hanging on the wall. There is a sign that " +
+            //     "says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'get') && checkText(checkThisText, 'hammer') && didHammerGetGot === false) {
 
-            $(".big-text").hide().html("You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the " +
-                "left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a " +
-                "hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new " +
-                "items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the" +
-                " <em>door</em>.").fadeIn(800);
+            // $(".big-text").hide().html("You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the " +
+            //     "left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a " +
+            //     "hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new " +
+            //     "items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the" +
+            //     " <em>door</em>.").fadeIn(800);
 
-            youGotAnItem("Hammer", "Smash");
-            didHammerGetGot = true;
+            // youGotAnItem("Hammer", "Smash");
+            // didHammerGetGot = true;
 
         } else if (checkText(checkThisText, 'smash') && checkText(checkThisText, 'door') && inventory.includes('Hammer')) {
 
@@ -324,8 +324,8 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
-            $(".big-text").hide().html("You look down at your former ally and salute the <em>hammer</em>. You couldn't " +
-                "have done it without him.").fadeIn(800);
+            // $(".big-text").hide().html("You look down at your former ally and salute the <em>hammer</em>. You couldn't " +
+            //     "have done it without him.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 

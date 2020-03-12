@@ -178,7 +178,11 @@ function pigLatinify(text){
 // index point 1 will have default actions if the player did not include an actor in the submitted text
 
 // Third index point is the action that the player is taking.
-// Constants are 0: look 1: go 2: get 3: use
+//0: look 
+// 1: go 
+// 2: get 
+// 3: use
+// 4: smash (for tutorial)
 
 // New function to check the players text for keywords
 // Instead of stopping as soon as it finds two keywords it checks if there are too many so there is no confusion as to which action the player is taking
@@ -352,6 +356,31 @@ const insideTutorial = [
             }
         },
         function(){return "You take the glass and use it as the final component of the MOST POWERFUL SPELL IN THE... oh wait no you don't. Even if you could get the <em>glass</em> you know no use for it."}
+    ],
+    [
+        function(){
+            if(!didHammerGetGot){
+                return "It isn't very big and it's just sorta hanging on the wall. There is a sign that says 'in case of glass'. Just go ahead and <em>get</em> the <em>hammer</em>."
+            }else if(didHammerGetGot && !isGlassSmashed){
+                return "It's in your hand."
+            }else if(didHammerGetGot && isGlassSmashed){
+                return "You look down at your former ally and salute the <em>hammer</em>. You couldn't have done it without him."
+            }
+        },
+        function(){return "You go to the <em>hammer</em>. It's even more beautiful up close"},
+        function(){
+            if(!didHammerGetGot){
+                youGotAnItem("Hammer", "Smash");
+                actions[4] = "smash";
+                didHammerGetGot = true;
+                return "You have acquired a <em>hammer</em>. If you wanna move your eyes slightly to the left, you can see that you have an inventory and the <em>hammer</em> has been added. Why do you want a hammer? Check out what actions you can do. You see that? You can <em>smash</em> things now. Getting new items will allow you to do new and exciting things. Obviously it's time to <em>smash</em> through the <em>door</em>."
+            }else if(didHammerGetGot && !isGlassSmashed){
+                return "You already have the <em>hammer</em>. It's in your inventory."
+            }else if(didHammerGetGot && isGlassSmashed){
+                return "If you love something, then you set it free. Your time with <em>hammer</em> was a magical one. Time that you will cherish forever but it's time to move on."
+            }
+        },
+        function(){return "I see where the confusion is. You <em>use</em> things that are in the environment. You can <em>use</em> that <em>button</em> if the <em>glass</em> isn't in the way. The <em>hammer</em> is an item you have aquired and it lets you take the action <em>smash</em>."}
     ]
 ]
 

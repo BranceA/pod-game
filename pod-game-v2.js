@@ -265,9 +265,7 @@ const outsideTutorial = [
                 return "When you just <em>look</em>, you take a look at your surroundings. You are currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. When you see a glowing italicized word like <em>this</em> then you can interact with it. The best (and only) way to do things is to type one of the actions you have available to you and whatever you want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>."
             }
         },
-        function(){
-            return "Good luck going there."
-        }
+        function(){return "Good luck going there."}
     ],
     // For the door
     [
@@ -276,15 +274,11 @@ const outsideTutorial = [
             addNewCommand("Go");
             return "This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial. I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> so why don't you <em>go north</em>."
         },
-        function(){
-            return "You go up to the <em>door</em> in preparation to go <em>north</em>"
-        }
+        function(){return "You go up to the <em>door</em> in preparation to go <em>north</em>"}
     ],
     // For north
     [
-        function(){
-            return "You look <em>north</em> and see a <em>door</em>. You should <em>go north</em>"
-        },
+        function(){return "You look <em>north</em> and see a <em>door</em>. You should <em>go north</em>"},
         function(){
             roomIndex = 1;
             actions[2] = "get"
@@ -306,14 +300,13 @@ const insideTutorial = [
                 return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground"
             }
         },
+        function(){return "Good luck going there."},
+        function(){return "You try your best but you just don't get it."},
+        function(){return "The functionality of this is beyond you and you do not know how to use it."}
+    ],
+    [
         function(){
-            return "Good luck going there."
-        },
-        function(){
-            return "You try your best but you just don't get it."
-        },
-        function(){
-            return "The functionality of this is beyond you and you do not know how to use it."
+
         }
     ]
 ]

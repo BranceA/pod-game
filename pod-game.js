@@ -176,15 +176,15 @@ function checkKeyWords() {
             whatRoomWeIn = "center";
             skipToCenter();
         } else if (decidedOnTutorial === false && checkText(checkThisText, "yes")) {
-            $(".big-text").hide().html("Welcome to name pending. This is a text based adventure game. This means that " +
-                "you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing " +
-                "controller to get in your way. I accidentally dropped you outside the tutorial so I need you to work with" +
-                " me. Down below is a list of things you are currently able to accomplish. All you can do right now is " +
-                "<em>look</em>. Go ahead and try that out.").fadeIn(800);
-            decidedOnTutorial = true;
-            whatRoomWeIn = "start";
+            // $(".big-text").hide().html("Welcome to name pending. This is a text based adventure game. This means that " +
+            //     "you get the benefit of an awesome videogame with no annoying graphics to distract you and no confusing " +
+            //     "controller to get in your way. I accidentally dropped you outside the tutorial so I need you to work with" +
+            //     " me. Down below is a list of things you are currently able to accomplish. All you can do right now is " +
+            //     "<em>look</em>. Go ahead and try that out.").fadeIn(800);
+            // decidedOnTutorial = true;
+            // whatRoomWeIn = "start";
         } else {
-            $(".big-text").hide().html("You probably need the tutorial. Type 'yes' and press enter.").fadeIn(800);
+            // $(".big-text").hide().html("You probably need the tutorial. Type 'yes' and press enter.").fadeIn(800);
         }
     }
 
@@ -192,29 +192,29 @@ function checkKeyWords() {
 
         if (checkText(checkThisText, 'look') && firstCommand === false) {
 
-            $(".big-text").hide().html('When you just <em>look</em>, you take a look at your surroundings. You are ' +
-                'currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. ' +
-                'When you see a glowing italicized word like <em>this</em> then you can interact with it. The best ' +
-                '(and only) way to do things is to type one of the actions you have available to you and whatever you ' +
-                'want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>.').fadeIn(800);
+            // $(".big-text").hide().html('When you just <em>look</em>, you take a look at your surroundings. You are ' +
+            //     'currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. ' +
+            //     'When you see a glowing italicized word like <em>this</em> then you can interact with it. The best ' +
+            //     '(and only) way to do things is to type one of the actions you have available to you and whatever you ' +
+            //     'want to interact with. Then hit enter. Go ahead and <em>look</em> at the <em>door</em>.').fadeIn(800);
 
             firstCommand = true;
 
         } else if (checkText(checkThisText, 'look') && (checkText(checkThisText, 'door')) && firstCommand === true) {
 
-            $(".big-text").hide().html("This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial." +
-                "I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> " +
-                "so why don't you <em>go north</em>.").fadeIn(800);
+            // $(".big-text").hide().html("This is a standard issue <em>door</em>. It's unlocked and it leads to the tutorial." +
+            //     "I'm a nice guy. I just gave you the ability to <em>go</em> places. The tutorial is still <em>north</em> " +
+            //     "so why don't you <em>go north</em>.").fadeIn(800);
 
             addNewCommand("Go");
 
         } else if (checkText(checkThisText, 'go') && (checkText(checkThisText, 'north')) && availableActions.includes('Go')) {
 
-            $(".big-text").hide().html("So far so good. You are now in the tutorial proper. You hear the door behind you " +
-                "lock and shortly after you hear the room you came from cave in, become radioactive and fade from reality. " +
-                "You weren't supposed to be there anyway. This room is identical to the one you came from except there " +
-                "is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a " +
-                "<em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.").fadeIn(800);
+            // $(".big-text").hide().html("So far so good. You are now in the tutorial proper. You hear the door behind you " +
+            //     "lock and shortly after you hear the room you came from cave in, become radioactive and fade from reality. " +
+            //     "You weren't supposed to be there anyway. This room is identical to the one you came from except there " +
+            //     "is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a " +
+            //     "<em>hammer</em> next to it. Look at that. I let you <em>get</em> things. You're smart. Have fun.").fadeIn(800);
 
             addNewCommand("Get"); //add new player command for the hammer
 
@@ -222,15 +222,15 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && firstCommand === true) {
 
-            $(".big-text").hide().html("When you just <em>look</em>, you take a look at your surroundings. You are " +
-                "currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. " +
-                "When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and " +
-                "<em>look</em> at the <em>door</em>.").fadeIn(800);
+            // $(".big-text").hide().html("When you just <em>look</em>, you take a look at your surroundings. You are " +
+            //     "currently in a small, uniformly gray, cube shaped room. To the <em>north</em> you see a <em>door</em>. " +
+            //     "When you see a glowing italicized word like <em>this</em> then you can interact with it. Go ahead and " +
+            //     "<em>look</em> at the <em>door</em>.").fadeIn(800);
 
         } else { //if player enters wrong combination of words
 
-            $(".big-text").hide().html("Words are hard but I'm going to need you to trust me and type what I say. Go " +
-                "ahead and type <em>look</em>").fadeIn(800);
+            // $(".big-text").hide().html("Words are hard but I'm going to need you to trust me and type what I say. Go " +
+            //     "ahead and type <em>look</em>").fadeIn(800);
         }
 
         //END OF START
@@ -240,8 +240,8 @@ function checkKeyWords() {
 
         if (checkText(checkThisText, 'look') && checkText(checkThisText, 'door')) {
 
-            $(".big-text").hide().html("It's the same <em>door</em> except this one is locked. You don't see a keyhole " +
-                "anywhere.").fadeIn(800);
+            // $(".big-text").hide().html("It's the same <em>door</em> except this one is locked. You don't see a keyhole " +
+            //     "anywhere.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === false) {
 
@@ -249,7 +249,7 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
-            $(".big-text").hide().html("It's red round and pressable. If only that dang <em>glass</em> wasn't in the way.").fadeIn(800);
+            // $(".big-text").hide().html("It's red round and pressable. If only that dang <em>glass</em> wasn't in the way.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'north')) {
 
@@ -311,14 +311,14 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
-            $(".big-text").hide().html("You poke at the button real good. If it wasn't for that <em>glass</em> then you " +
-                "would have pushed the hell out of that button.").fadeIn(800);
+            // $(".big-text").hide().html("You poke at the button real good. If it wasn't for that <em>glass</em> then you " +
+            //     "would have pushed the hell out of that button.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === true) {
 
-            $(".big-text").hide().html("You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. " +
-                "The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about " +
-                "dying. We have a top notch cleaning crew.").fadeIn(800);
+            // $(".big-text").hide().html("You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. " +
+            //     "The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about " +
+            //     "dying. We have a top notch cleaning crew.").fadeIn(800);
 
             tutorialButtonPushed = true;
 
@@ -334,8 +334,8 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1 && isGlassSmashed === true) {
 
-            $(".big-text").hide().html("Though the <em>button</em> can't move, speak or think, you're pretty sure it is " +
-                "grateful to be freed.").fadeIn(800);
+            // $(".big-text").hide().html("Though the <em>button</em> can't move, speak or think, you're pretty sure it is " +
+            //     "grateful to be freed.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('go') !== -1 && checkThisText.toLowerCase().indexOf('north') !== -1 && tutorialButtonPushed === false) {
 

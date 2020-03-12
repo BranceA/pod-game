@@ -312,8 +312,8 @@ const insideTutorial = [
                 return "Though the <em>button</em> can't move, speak or think, you're pretty sure it is grateful to be freed."
             }
         },
-        function(){return "You travel for many feet and arrive at the button."},
-        function(){return "You try to pry the button off the wall but to no avail."},
+        function(){return "You travel for many feet and arrive at the <em>button</em>."},
+        function(){return "You try to pry the <em>button</em> off the wall but to no avail."},
         function(){
             if(!isGlassSmashed){
                 return "You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button."
@@ -322,7 +322,17 @@ const insideTutorial = [
                 return "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew."
             }
         }
-    ]
+    ],
+    function(){return "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere."},
+    function(){return "It's not a big room. It doesn't take you long to go to the <em>door</em>."},
+    function(){return "You inspect the door and come to the conclusion that you do not have the tools to remove the <em>door</em> from where it fastened, nor can you think of a good use for a <em>door</em> and taking it with you is unweildy to say the least."},
+    function(){
+        if(!tutorialButtonPushed){
+            return "You jiggle the handle a bit but this <em>door</em> is locked as hell."
+        }else if(tutorialButtonPushed){
+            return "My God. The <em>door</em> is open. You can't quite see what lies ahead but you should <em>go north</em> and find out."
+        }
+    }
 ]
 
 // All blocks of text are being stored in this array to eliminate the need to write most of the current conditions

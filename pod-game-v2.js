@@ -230,8 +230,9 @@ function findKeyWords(){
         console.log(actorIndex)
         console.log(actionIndex)
         displayText = textOptions[roomIndex][actorIndex][actionIndex]();
+        console.log(displayText)
     }
-
+    console.log(displayText)
     $(".big-text").hide().html(displayText).fadeIn(800);
 }
 
@@ -298,7 +299,7 @@ const insideTutorial = [
         function(){
             if(!isGlassSmashed && !didHammerGetGot){
                 return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there is a <em>hammer</em> next to it."
-            }else if(isGlassSmashed && !didHammerGetGot){
+            }else if(!isGlassSmashed && didHammerGetGot){
                 return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. The button is covered by <em>glass</em> and there was a <em>hammer</em> next to it."
             }else if(isGlassSmashed && didHammerGetGot){
                 return "This room is identical to the one you came from except there is a <em>button</em> next to the <em>door</em>. There is shattered <em>glass</em> and a small <em>hammer</em> on the ground"
@@ -306,7 +307,8 @@ const insideTutorial = [
         },
         function(){return "Good luck going there."},
         function(){return "You try your best but you just don't get it."},
-        function(){return "The functionality of this is beyond you and you do not know how to use it."}
+        function(){return "The functionality of this is beyond you and you do not know how to use it."},
+        function(){return "You smash it as hard as you can with your tiny hammer. You hear a plink and there is no noticeable change."}
     ],
     [
         function(){
@@ -325,7 +327,8 @@ const insideTutorial = [
                 tutorialButtonPushed = true;
                 return "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew."
             }
-        }
+        },
+        function(){return "<em>Glass</em> is still in the way. One thing at a time."}
     ],
     [
         function(){return "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere."},
@@ -337,7 +340,8 @@ const insideTutorial = [
             }else if(tutorialButtonPushed){
                 return "My God. The <em>door</em> is open. You can't quite see what lies ahead but you should <em>go north</em> and find out."
             }
-        }
+        },
+        function(){return "Wow you are actually trying to break through this <em>door</em> with a <em>hammer</em>. I was joking. You take your fun sized whacking tool and really go to town on that door. If somebody is on the other side, they might hear you knocking. Try <em>smash</em>ing the <em>glass</em>"}
     ],
     [
         function(){
@@ -355,7 +359,8 @@ const insideTutorial = [
                 return "You scoop some shards of <em>glass</em> into your hand. This isn't a bad idea but it certainly isn't a good one so you put it back."
             }
         },
-        function(){return "You take the glass and use it as the final component of the MOST POWERFUL SPELL IN THE... oh wait no you don't. Even if you could get the <em>glass</em> you know no use for it."}
+        function(){return "You take the glass and use it as the final component of the MOST POWERFUL SPELL IN THE... oh wait no you don't. Even if you could get the <em>glass</em> you know no use for it."},
+        //Smash glass here
     ],
     [
         function(){
@@ -380,7 +385,8 @@ const insideTutorial = [
                 return "If you love something, then you set it free. Your time with <em>hammer</em> was a magical one. Time that you will cherish forever but it's time to move on."
             }
         },
-        function(){return "I see where the confusion is. You <em>use</em> things that are in the environment. You can <em>use</em> that <em>button</em> if the <em>glass</em> isn't in the way. The <em>hammer</em> is an item you have aquired and it lets you take the action <em>smash</em>."}
+        function(){return "I see where the confusion is. You <em>use</em> things that are in the environment. You can <em>use</em> that <em>button</em> if the <em>glass</em> isn't in the way. The <em>hammer</em> is an item you have aquired and it lets you take the action <em>smash</em>."},
+        function(){return "It's... simply not possible. I'm not sure what you were expecting. Did you think that a version of yourself was going to arrive from an alternate dimension with the exact same <em>hammer</em> and <em>smash</em> the one you're holding? Do you want to tear reality apart with a paradox? That's how that happens."}
     ]
 ]
 

@@ -329,8 +329,8 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('get') !== -1 && checkThisText.toLowerCase().indexOf('hammer') !== -1 && isGlassSmashed === true) {
 
-            $(".big-text").hide().html("If you love something, then you set it free. Your time with <em>hammer</em> was a " +
-                "magical one. Time that you will cherish forever but it's time to move on.").fadeIn(800);
+            // $(".big-text").hide().html("If you love something, then you set it free. Your time with <em>hammer</em> was a " +
+            //     "magical one. Time that you will cherish forever but it's time to move on.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && checkThisText.toLowerCase().indexOf('button') !== -1 && isGlassSmashed === true) {
 
@@ -372,8 +372,8 @@ function checkKeyWords() {
 
         } else if (checkThisText.toLowerCase().indexOf('smash') !== -1 && inventory.includes("Hammer")) {
 
-            $(".big-text").hide().html("You smash it as hard as you can with your tiny hammer. You hear a plink and " +
-                "there is no noticeable change.").fadeIn(800);
+            // $(".big-text").hide().html("You smash it as hard as you can with your tiny hammer. You hear a plink and " +
+            //     "there is no noticeable change.").fadeIn(800);
 
         } else if (checkThisText.toLowerCase().indexOf('look') !== -1 && didHammerGetGot === false && isGlassSmashed === false) {
 

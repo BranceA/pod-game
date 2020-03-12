@@ -306,7 +306,21 @@ const insideTutorial = [
     ],
     [
         function(){
-
+            if(!isGlassSmashed){
+                return "It's red round and pressable. If only that dang <em>glass</em> wasn't in the way."
+            }else if(isGlassSmashed){
+                return "Though the <em>button</em> can't move, speak or think, you're pretty sure it is grateful to be freed."
+            }
+        },
+        function(){return "You travel for many feet and arrive at the button."},
+        function(){return "You try to pry the button off the wall but to no avail."},
+        function(){
+            if(!isGlassSmashed){
+                return "You poke at the button real good. If it wasn't for that <em>glass</em> then you would have pushed the hell out of that button."
+            }else if(isGlassSmashed){
+                tutorialButtonPushed = true;
+                return "You hear a click. If I were a bettin man, I'd say that <em>door</em> is unlocked. The real game is to the <em>north</em>. If you think this game is going to be hard, don't worry about dying. We have a top notch cleaning crew."
+            }
         }
     ]
 ]

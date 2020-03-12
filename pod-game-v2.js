@@ -323,16 +323,18 @@ const insideTutorial = [
             }
         }
     ],
-    function(){return "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere."},
-    function(){return "It's not a big room. It doesn't take you long to go to the <em>door</em>."},
-    function(){return "You inspect the door and come to the conclusion that you do not have the tools to remove the <em>door</em> from where it fastened, nor can you think of a good use for a <em>door</em> and taking it with you is unweildy to say the least."},
-    function(){
-        if(!tutorialButtonPushed){
-            return "You jiggle the handle a bit but this <em>door</em> is locked as hell."
-        }else if(tutorialButtonPushed){
-            return "My God. The <em>door</em> is open. You can't quite see what lies ahead but you should <em>go north</em> and find out."
+    [
+        function(){return "It's not a big room. It doesn't take you long to go to the <em>door</em>."},
+        function(){return "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere."},
+        function(){return "You inspect the door and come to the conclusion that you do not have the tools to remove the <em>door</em> from where it fastened, nor can you think of a good use for a <em>door</em> and taking it with you is unweildy to say the least."},
+        function(){
+            if(!tutorialButtonPushed){
+                return "You jiggle the handle a bit but this <em>door</em> is locked as hell."
+            }else if(tutorialButtonPushed){
+                return "My God. The <em>door</em> is open. You can't quite see what lies ahead but you should <em>go north</em> and find out."
+            }
         }
-    }
+    ]
 ]
 
 // All blocks of text are being stored in this array to eliminate the need to write most of the current conditions

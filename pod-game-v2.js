@@ -324,8 +324,8 @@ const insideTutorial = [
         }
     ],
     [
-        function(){return "It's not a big room. It doesn't take you long to go to the <em>door</em>."},
         function(){return "It's the same <em>door</em> except this one is locked. You don't see a keyhole anywhere."},
+        function(){return "It's not a big room. It doesn't take you long to go to the <em>door</em>."},
         function(){return "You inspect the door and come to the conclusion that you do not have the tools to remove the <em>door</em> from where it fastened, nor can you think of a good use for a <em>door</em> and taking it with you is unweildy to say the least."},
         function(){
             if(!tutorialButtonPushed){
@@ -334,6 +334,24 @@ const insideTutorial = [
                 return "My God. The <em>door</em> is open. You can't quite see what lies ahead but you should <em>go north</em> and find out."
             }
         }
+    ],
+    [
+        function(){
+            if(!isGlassSmashed){
+                return "It's glass and it's preventing you from pressing the button. What else do you want?"
+            }else if(isGlassSmashed){
+                return "You look at the ground and admire your work. Too bad there weren't any witnesses to your battle against the glass. Songs would have been written. You would have gone down in history."
+            }
+        },
+        function(){return "Deciding to take this one step at a time, you walk to the <em>glass</em> and comtemplate your next move."},
+        function(){
+            if(!isGlassSmashed){
+                return "The <em>glass</em> is flush against the wall. There is no getting the <em>glass</em> or getting at the <em>button</em> while it's in the way."
+            }else if(isGlassSmashed){
+                return "You scoop some shards of <em>glass</em> into your hand. This isn't a bad idea but it certainly isn't a good one so you put it back."
+            }
+        },
+        function(){return "You take the glass and use it as the final component of the MOST POWERFUL SPELL IN THE... oh wait no you don't. Even if you could get the <em>glass</em> you know no use for it."}
     ]
 ]
 

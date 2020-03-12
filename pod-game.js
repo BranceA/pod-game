@@ -245,7 +245,7 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === false) {
 
-            $(".big-text").hide().html("It's glass and it's preventing you from pressing the button. What else do you want?").fadeIn(800);
+            // $(".big-text").hide().html("It's glass and it's preventing you from pressing the button. What else do you want?").fadeIn(800);
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 
@@ -306,8 +306,8 @@ function checkKeyWords() {
 
         } else if (checkText(checkThisText, 'look') && checkText(checkThisText, 'glass') && isGlassSmashed === true) {
 
-            $(".big-text").hide().html("You look at the ground and admire your work. Too bad there weren't any witnesses " +
-                "to your battle against the glass. Songs would have been written. You would have gone down in history.").fadeIn(800);
+            // $(".big-text").hide().html("You look at the ground and admire your work. Too bad there weren't any witnesses " +
+            //     "to your battle against the glass. Songs would have been written. You would have gone down in history.").fadeIn(800);
 
         } else if (checkText(checkThisText, 'use') && checkText(checkThisText, 'button') && isGlassSmashed === false) {
 

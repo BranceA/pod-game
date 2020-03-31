@@ -1,26 +1,26 @@
 // Keep all new variables up here for organization
 // For testing we can come up here and set up where we want the player to be by changing the starting value
 
-var inventory = ['<ul>', '</ul>'];
-var availableActions = ['<ul>', '<li>', 'Look', '</li>', '</ul>'];
-var bigText = document.getElementById('big-text-text');
-var commandsFooter = document.getElementById('commands-box');
-var submitButton = document.getElementById('submit');
-var submittedText = document.getElementById('text-input');
-var inventoryAside = document.getElementById('inventory-aside');
-var whatRoomWeIn = 'pageload';
-var isGlassSmashed = false;
-var firstCommand = false;
-var didHammerGetGot = false;
-var tutorialButtonPushed = false;
-var didStandUp = false;
-var mooseStatus = "unseen";
-var earringsStatus = "unseen";
-var staffStatus = "ground";
-var fishingPoleStatus = "none";
-var eastKeyStatus = "under";
-var decidedOnTutorial = false;
-var babelFish = false;
+let inventory = ['<ul>', '</ul>'];
+let availableActions = ['<ul>', '<li>', 'Look', '</li>', '</ul>'];
+let bigText = document.getElementById('big-text-text');
+let commandsFooter = document.getElementById('commands-box');
+let submitButton = document.getElementById('submit');
+let submittedText = document.getElementById('text-input');
+let inventoryAside = document.getElementById('inventory-aside');
+let isGlassSmashed = false;
+let firstCommand = false;
+let didHammerGetGot = false;
+let tutorialButtonPushed = false;
+let didStandUp = true;
+let mooseStatus = "unseen";
+let earringsStatus = "unseen";
+let staffStatus = "ground";
+let fishingPoleStatus = "none";
+let eastKeyStatus = "under";
+let decidedOnTutorial = false;
+let babelFish = false;
+let checkThisText = "";
 
 let roomIndex = 0;
 // Need array not containing html elements
@@ -187,12 +187,12 @@ function pigLatinify(text){
 // New function to check the players text for keywords
 // Instead of stopping as soon as it finds two keywords it checks if there are too many so there is no confusion as to which action the player is taking
 function findKeyWords(){
-    if(!decidedOnTutorial){
-        dealWithTutorial();
+    checkThisText = submittedText.value.toLowerCase();
+    if(!decidedOnTutorial || !didStandUp){
+        checkCertainActions();
     }else{
 
     const actors = textOptions[roomIndex][0]
-    const checkThisText = submittedText.value.toLowerCase();
     submittedText.value = "";
     let actorIndex = null;
     let actionIndex = null;
@@ -226,18 +226,20 @@ function findKeyWords(){
     if(tooManyCommands){
         displayText = "Calm down and do one thing at a time. Pick one thing to interact with and one thing to do."
     }else{
-        console.log(roomIndex)
-        console.log(actorIndex)
-        console.log(actionIndex)
         displayText = textOptions[roomIndex][actorIndex][actionIndex]();
-        console.log(displayText)
     }
-    console.log(displayText)
     $(".big-text").hide().html(displayText).fadeIn(800);
 }
 
+function checkCertainActions(){
+    if(!decidedOnTutorial){
+        dealWithTutorial();
+    }else if(!didStandUp){
+        playerNeedsToStand();
+    }
+}
+
 function dealWithTutorial(){
-    const checkThisText = submittedText.value.toLowerCase();
     let displayText = "";
     submittedText.value = "";
     if(checkThisText.toLowerCase().indexOf("yes") !== -1){
@@ -248,12 +250,23 @@ function dealWithTutorial(){
         decidedOnTutorial = true;
         skipToCenter();
         roomIndex = 2;
-        displayText = "Doesn't work yet"
+        didStandUp = false;
+        displayText = "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>."
     }else{
         displayText = "It's a yes or no question. Do you want to play a tutorial. It's starting to seem like you should."
     }
     $(".big-text").hide().html(displayText).fadeIn(800);
 }
+}
+
+function playerNeedsToStand(){
+    if(checkThisText.toLowerCase().indexOf("stand") !== -1){
+        didStandUp = true;
+        displayText = "Sweet freedom. You take in your surroundings as you stretch. You are in a room with a bare stone floor and the <em>wall</em>s are covered in some kind of symbols. All things considered, this place doesn't seem too bad. The epicenter of dark magic is sparsely furnished. The only really disturbing thing in here is a shrunken <em>head</em> that is hanging from the ceiling. The center of the room is clear and you are standing in a red <em>circle</em> painted on the ground. There is a <em>podium</em> facing towards you. Near the <em>podium</em>, a <em>staff</em> is laying on the ground and the area surrounding the <em>staff</em> is blackened. The directions leading out are <em>east</em> and <em>west</em>. There is a <em>TBD barrier</em> to the <em>north</em> and <em>south</em>."
+    }else{
+        displayText = "That's a great idea but first you need to <em>stand up</em>."
+    }
+    $(".big-text").hide().html(displayText).fadeIn(800);
 }
 
 // Outside tutorial does not have much
@@ -402,6 +415,7 @@ const insideTutorial = [
                 return "You go <em>north</em> until you hit a wall. Literally. Oh wait that's not a wall. That's the <em>door</em> I mentioned earlier. The locked one. The one preventing you from moving forward. I'm not going to keep babying you when we get to the real game."
             }else if(tutorialButtonPushed){
                 roomIndex = 2;
+                didStandUp = false;
                 return "Things could always be worse. Sure life hasn't been great lately. Five years ago the Dark Wizard Leslie, took over the world and reshaped it into a twisted hellscape. It was pretty unfortunate when Emperor Leslie the Terrible and Great, set up his Fortress of Power down the street from your house. Crime went down due to the tyrannical nature of Leslie but he also needs a never ending supply of humans to sacrifice to evil forces better left alone. That's where you come in. You were knocked out and when you woke up, you were tied right here on the ground with the sound of chanting. It doesn't take a genius to realize that you were the next sacrifice on the docket. Something caused an explosion and there was some screaming and now you seem to be by yourself. Like I said, things could be worse. You have been pulling on your restraints for a while and you finally get loose. To get a better idea of what is going on, you should <em>stand up</em>."
             }
         },
@@ -409,6 +423,11 @@ const insideTutorial = [
         function(){return "Direction is more of a concept than a thing. I don't know what you are trying to use."},
         function(){return "You brandish your <em>hammer</em> menacingly towards that bastard, <em>north</em>. You swing as hard as you can over and over but your attacks have nothing to come in contact with. After hours of combat you pass out. When you awaken, everything is as it was before."}
     ]
+]
+
+const centerRoom = [
+    //actors
+    []
 ]
 
 // All blocks of text are being stored in this array to eliminate the need to write most of the current conditions
